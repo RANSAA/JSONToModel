@@ -15,8 +15,3 @@ mainly for create model from json data
 <img src="https://github.com/helinyu/ModelCreation/blob/master/Snip20181010_4.png" height="330" width="330" >
 </div>
 
----------------------
-作者：sunsteam 
-来源：CSDN 
-原文：https://blog.csdn.net/sunsteam/article/details/73112787?utm_source=copy 
-版权声明：本文为博主原创文章，转载请附上博文链接！
