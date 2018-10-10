@@ -235,7 +235,7 @@ static NSString *const kInheritingNSObject = @":NSObject";
     [mImpContentString appendString:importString];
     
     for (NSString *className in _mModelDicts) {
-        NSString *currentClassString = [NSString stringWithFormat:@"@implementation %@ \n\n\n\n @end\n\n",className];
+        NSString *currentClassString = [NSString stringWithFormat:@"@implementation %@ \n\n\n\n@end\n\n",className];
         [mImpContentString appendString:currentClassString];
     }
     return mImpContentString;
