@@ -11,4 +11,4 @@ mainly for create model from json data
 
 若是出现什么错误，可以查看下面打印的log；
 <h3>操作详图</h3>
-![操作详图](../../Snip20181010_4.png)
+![操作详图](https://github.com/helinyu/ModelCreation/blob/master/Snip20181010_4.png)
