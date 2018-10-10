@@ -40,6 +40,8 @@ static NSString *const kInheritingNSObject = @":NSObject";
 @property (nonatomic, strong) NSMutableDictionary *mModelDict;
 @property (nonatomic, strong) NSMutableArray *mModelHasFinsheds; // 这个先暂时慢点用
 
+@property (weak) IBOutlet NSTextField *urlTextField;
+@property (weak) IBOutlet NSButton *requestUrlBtn;
 
 @end
 
@@ -248,6 +250,37 @@ static NSString *const kInheritingNSObject = @":NSObject";
     
     [self onGetJsonModelWithJson:_jsonInputString];
     [self showInOutputView];
+}
+- (IBAction)onRequstUrlAction:(id)sender {
+    NSLog(@"request ur: %@",self.urlTextField.stringValue);
+    NSString *urlString = self.urlTextField.stringValue;
+    if (urlString.length <=0) {
+        NSLog(@"please input url string");
+        return;
+    }
+    [self requestWithUrlString:urlString then:^(NSString *reponse, NSError *error) {
+        if (error) {
+            return ;
+        }
+        self.jsonInputTextView.string =reponse;
+    }];
+}
+
+- (void)requestWithUrlString:(NSString *)urlString then:(void (^)(NSString *reponse, NSError *error))then {
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSession *session=[NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask=[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"requst error :%@",error);
+            !then? :then(nil, error);
+            return;
+        }
+         NSString *responseString =[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        !then? :then(responseString, nil);
+    }];
+    //5.执行任务
+    [dataTask resume];
 }
 
 @end
