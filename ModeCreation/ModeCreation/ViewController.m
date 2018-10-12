@@ -283,4 +283,9 @@ static NSString *const kInheritingNSObject = @":NSObject";
     [dataTask resume];
 }
 
+// 清除上一次生成的内容
+- (IBAction)onClearOutPutAction:(id)sender {
+    _outputPropertyString = _outputTextView.string =@"";
+}
+
 @end
