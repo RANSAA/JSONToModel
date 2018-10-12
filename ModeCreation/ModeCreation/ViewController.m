@@ -14,6 +14,13 @@
 
 static NSString *const kInheritingNSObject = @":NSObject";
 
+#define kModelCustomPropertyMapper \
+@"+ (NSDictionary *)modelCustomPropertyMapper { \
+\n    return @{ \
+\n    \
+\n    }; \
+\n}"
+
 @interface ViewController ()
 
 @property (weak) IBOutlet NSTextField *prefixTF;
@@ -116,7 +123,7 @@ static NSString *const kInheritingNSObject = @":NSObject";
 //                 暂时没有想到什么要处理的
             }
             if (type.length >0) {
-                currentKeyProperty = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray<%@> *%@s;\n",type,keyString];
+                currentKeyProperty = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray<%@ *> *%@s;\n",type,keyString];
             }
             else {
                 currentKeyProperty = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@s;\n",keyString];
@@ -239,7 +246,7 @@ static NSString *const kInheritingNSObject = @":NSObject";
     
     for (NSInteger index = _mModelDicts.count-1; index >=0; index--) {
         NSString *className = _mModelDicts[index];
-        NSString *currentClassString = [NSString stringWithFormat:@"@implementation %@ \n\n\n\n@end\n\n",className];
+        NSString *currentClassString = [NSString stringWithFormat:@"@implementation %@ \n\n%@\n\n@end\n\n",className,kModelCustomPropertyMapper];
         [mImpContentString appendString:currentClassString];
     }
     
