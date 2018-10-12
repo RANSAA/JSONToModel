@@ -238,6 +238,7 @@ static NSString *const kInheritingNSObject = @":NSObject";
     
     NSLog(@"file :%@",documentPath);
 }
+
 - (NSString *)createImpFileString {
     NSMutableString *mImpContentString = @"".mutableCopy;
    
@@ -296,6 +297,8 @@ static NSString *const kInheritingNSObject = @":NSObject";
 // 清除上一次生成的内容
 - (IBAction)onClearOutPutAction:(id)sender {
     _outputPropertyString = _outputTextView.string =@"";
+    [_mModelDict removeAllObjects];
+    [_mModelDicts removeAllObjects];
 }
 
 @end
