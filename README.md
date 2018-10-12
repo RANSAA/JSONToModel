@@ -4,6 +4,7 @@ mainly for create model from json data
 1、实现了基本的json数据解析为模型 <br/>
 2、实现了json数据里面的嵌套，eg：字典[key/value], 数组等<br/>
 3、添加了网络请求的参数来进行处理
+4、添加clear，在生成新的内容之前，不希望保留上一次的输出，需要点击clear按钮；
 
 
 <h3>结果</h3>
@@ -15,4 +16,8 @@ mainly for create model from json data
 <div align="center">
 <img src="https://github.com/helinyu/ModelCreation/blob/master/Snip20181010_4.png" height="330" width="330" >
 </div>
+
+
+bug修复：
+1、文件生成的时候的.m 文件错误
 
