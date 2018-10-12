@@ -233,13 +233,16 @@ static NSString *const kInheritingNSObject = @":NSObject";
 }
 - (NSString *)createImpFileString {
     NSMutableString *mImpContentString = @"".mutableCopy;
-    NSString *importString = [NSString stringWithFormat:@"#import \"\%@\" \n\n",_fileName];
+   
+    NSString *importString = [NSString stringWithFormat:@"#import \"\%@.h\" \n\n",_fileName];
     [mImpContentString appendString:importString];
     
-    for (NSString *className in _mModelDicts) {
+    for (NSInteger index = _mModelDicts.count-1; index >=0; index--) {
+        NSString *className = _mModelDicts[index];
         NSString *currentClassString = [NSString stringWithFormat:@"@implementation %@ \n\n\n\n@end\n\n",className];
         [mImpContentString appendString:currentClassString];
     }
+    
     return mImpContentString;
 }
 
