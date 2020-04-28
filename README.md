@@ -14,7 +14,7 @@ mainly for create model from json data
 若是出现什么错误，可以查看下面打印的log；
 <h3>操作详图</h3>
 <div align="center">
-<img src="https://raw.githubusercontent.com/RANSAA/ModelCreation/master/caputer.png" height="330" width="330" >
+<img src="https://github.com/RANSAA/ModelCreation/blob/master/caputerZib.jpg" height="330" width="330" >
 </div>
 
 
