@@ -430,7 +430,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C90CF11C79635317A36EEC67 /* Pods-JSONToModel.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JSONToModel/JSONToModel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -451,7 +451,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00A9FB2E53DCC43CD0117AE0 /* Pods-JSONToModel.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JSONToModel/JSONToModel.entitlements;
 				CODE_SIGN_STYLE = Automatic;

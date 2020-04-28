@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
-typedef void (^MTSuccessBlock)(NSHTTPURLResponse *response,id JSONDict);
+typedef void (^MTSuccessBlock)(NSHTTPURLResponse *response,id JSONDict, id data);
+//typedef void (^MTSuccessBlock)(id responseData,id JSONDict);
 typedef void (^MTFailedBlock)(NSError *error);
 
 @interface AFNetClient : NSObject

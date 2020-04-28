@@ -76,13 +76,14 @@ static NSTimeInterval   KAFRequestTimeout = 20.f;
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock){
+            id dict = nil;
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                
+                dict = responseObject;
             }else{
-                responseObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];//把NSData转换成字典类型
+                dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];//把NSData转换成字典类型
             }
             NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-            successBlock(response,responseObject);
+            successBlock(response,dict,responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (faileBlock){
@@ -134,12 +135,14 @@ static NSTimeInterval   KAFRequestTimeout = 20.f;
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock){
-            if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            }else{
-                responseObject = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];//把NSData转换成字典类型
-            }
-            NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-            successBlock(response,responseObject);
+             id dict = nil;
+             if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                 dict = responseObject;
+             }else{
+                 dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];//把NSData转换成字典类型
+             }
+             NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+             successBlock(response,dict,responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (faileBlock){

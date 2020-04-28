@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface NSDictionary (JSON)
 
 
@@ -32,7 +33,10 @@
  */
 - (NSData *)toJSONData;
 
+
+
 @end
+
 
 @interface NSString (JSON)
 

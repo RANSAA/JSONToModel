@@ -21,6 +21,8 @@
 @property(nonatomic,strong) NSMutableArray *arrayDictModel;
 @property(nonatomic,strong) NSDictionary *jsonDict;
 @property(nonatomic,copy) NSMutableString* classString;        //存类头文件内容
+@property(nonatomic, assign) BOOL isCompare;//是否将生成的属性排序
+@property (strong) IBOutlet NSButton *btnCompare;
 
 @end
 
@@ -60,13 +62,31 @@
     [textStorage2 addLayoutManager:self.inputTextView.layoutManager];
 }
 
-
+#pragma mark 生成
 - (IBAction)autoCodeCreate:(id)sender {
-    
+    self.isCompare = NO;
+    [self autoJsonToModelAcation];
+}
+
+
+#pragma mark 排序按钮点击
+- (IBAction)compareCodeCreate:(NSButton *)sender {
+    self.isCompare = YES;
+    [self autoJsonToModelAcation];
+}
+
+
+#pragma mark json生成model
+- (void)autoJsonToModelAcation
+{
     CFAbsoluteTime startTime =CFAbsoluteTimeGetCurrent();
     NSString *jsonStr = self.inputTextView.textStorage.string;
     //json字符串转json字典,可用
     NSDictionary *JSONDict = [jsonStr mj_JSONObject];
+    
+    JSONDict = [NSJSONSerialization JSONObjectWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];//把NSData转换成字典类型
+  
+    
     self.vildJSONLabel.stringValue = @"已验证";
     if(JSONDict==nil){
         NSLog(@"JSON格式错误，尝试去空格");
@@ -86,6 +106,7 @@
     
     CFAbsoluteTime executionTime = (CFAbsoluteTimeGetCurrent() - startTime);
     NSLog(@"executionTime %f ms", executionTime *1000.0);
+
 }
 
 
@@ -120,7 +141,12 @@
     NSArray *keyArray = [dic allKeys];
     if (keyArray.count==0) return @"";
     
-    NSString *fileStr=[NSString stringWithFormat:@"@interface %@ : NSObject \r\n\n",classKey];
+    //属性排序
+    if (self.isCompare) {
+        keyArray = [keyArray sortedArrayUsingSelector:@selector(compare:)];
+    }
+    
+    NSString *fileStr=[NSString stringWithFormat:@"\n@interface %@ : NSObject \r\n\n",classKey];
     for(int i=0;i<keyArray.count;i++)
     {
         NSString *key = [keyArray objectAtIndex:i];
@@ -129,17 +155,25 @@
         if([value isKindOfClass:[NSString class]])
         {
             NSLog(@"string");
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, copy)   NSString *%@;\r\n",fileStr,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, copy)   NSString * %@;\r\n",fileStr,key];
         }
         else if([value isKindOfClass:[NSNumber class]])
         {
-            NSLog(@"int");
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, assign) NSInteger %@;\r\n",fileStr,key];
+           if ((strcmp([value objCType], @encode(float)) == 0) || (strcmp([value objCType], @encode(double)) == 0)){
+                 NSLog(@"float");
+                 fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, assign) CGFloat    %@;\r\n",fileStr,key];
+             }else if (strcmp([value objCType], @encode(BOOL)) == 0){
+                 NSLog(@"Boolean");
+                 fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, assign) BOOL       %@;\r\n",fileStr,key];
+             }else{
+                 NSLog(@"int");
+                 fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, assign) NSInteger  %@;\r\n",fileStr,key];
+             }
         }
         else if([value isKindOfClass:[NSArray class]])
         {
             NSLog(@"array");
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSArray *%@;\r\n",fileStr,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSArray  * %@;//\r\n",fileStr,key];
             //判断是否为字典数组
             id subvalue=[value lastObject];
             if ([subvalue isKindOfClass:[NSDictionary class]]) {
@@ -149,18 +183,16 @@
         }else if([value isKindOfClass:[NSDictionary class]])
         {
             NSLog(@"NSDictionary==%@",value);
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) %@ *%@;\r\n",fileStr,key,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) %@  *%@;//\r\n",fileStr,key,key];
             NSString *classContent= [self autoCodeWithJsonDict:value modelKey:key];
             [_classString appendString:classContent];
-        }else if ([value isKindOfClass:NSClassFromString(@"__NSCFBoolean")]) { // BOOL
-            
         }else
         {
             NSLog(@"string");
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSString *%@;\r\n",fileStr,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSString * %@;\r\n",fileStr,key];
         }
     }
-    fileStr = [fileStr stringByAppendingString:@"\n@end\n\n"];
+    fileStr = [fileStr stringByAppendingString:@"\n@end\n\n\n\n"];
     return fileStr;
 }
 
@@ -184,12 +216,13 @@
     if (self.urlTextField.stringValue.length<5) return;
     
     __weak typeof(self)weakSelf = self;
-    [AFNetClient GET_Path:self.urlTextField.stringValue completed:^(NSHTTPURLResponse *response, NSDictionary *JSONDict) {
-        if (JSONDict.count>0) {
-            NSString *json=[JSONDict toReadableJSONString];
-            weakSelf.inputTextView.string=json;
-            [weakSelf handleJSON:JSONDict];
-        }
+    [AFNetClient GET_Path:self.urlTextField.stringValue completed:^(NSHTTPURLResponse *response, id JSONDict, NSData *data) {
+                   
+        NSString *json=[JSONDict toReadableJSONString];
+        weakSelf.inputTextView.string=json;
+        weakSelf.isCompare = NO;
+        [weakSelf autoJsonToModelAcation];
+        //[weakSelf handleJSON:JSONDict];
     } failed:^(NSError *error) {
         NSLog(@"error=%@",error);
     }];
