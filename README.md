@@ -1,4 +1,5 @@
-# ModelCreation
+# JSONToModel
+
 mainly for create model from json data
 <h3> 基本实现</h3>
 1、实现了基本的json数据解析为模型 <br/>
@@ -14,7 +15,7 @@ mainly for create model from json data
 若是出现什么错误，可以查看下面打印的log；
 <h3>操作详图</h3>
 <div align="center">
-<img src="https://github.com/RANSAA/ModelCreation/blob/master/caputerZib.jpg" height="330" width="330" >
+<img src="https://github.com/RANSAA/ModelCreation/blob/master/caputerZib.jpg" height="720" width="640" >
 </div>
 
 
