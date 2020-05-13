@@ -6,7 +6,7 @@ Objective-C JSON转Model工具
 2、实现了json数据里面的嵌套，eg：字典[key/value], 数组等<br/>
 3、添加了网络请求的参数来进行处理<br/>
 4、只生成了.h文件部分，.m文件部分根据用户需求进行处理</br>
-5、修改原fork框架中不需要的部分</br>
+5、移出原fork框架中不需要的部分</br>
 6、注意生成的属性是无序的，不能与json数据中的字段顺序保持一致</br>
 
 <h3>结果</h3>
@@ -18,8 +18,4 @@ Objective-C JSON转Model工具
 <div align="center">
 <img src="https://github.com/RANSAA/ModelCreation/blob/master/caputer.png" height="480" width="1280" >
 </div>
-
-
-<h3>bug修复：</h3>
-1、文件生成的时候的.m 文件错误
 
