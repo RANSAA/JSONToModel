@@ -155,25 +155,25 @@
         if([value isKindOfClass:[NSString class]])
         {
             NSLog(@"string");
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, copy)   NSString * %@;\r\n",fileStr,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, copy)   NSString* %@;\r\n",fileStr,key];
         }
         else if([value isKindOfClass:[NSNumber class]])
         {
            if ((strcmp([value objCType], @encode(float)) == 0) || (strcmp([value objCType], @encode(double)) == 0)){
                  NSLog(@"float");
-                 fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, assign) CGFloat    %@;\r\n",fileStr,key];
+                 fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, assign) CGFloat   %@;\r\n",fileStr,key];
              }else if (strcmp([value objCType], @encode(BOOL)) == 0){
                  NSLog(@"Boolean");
-                 fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, assign) BOOL       %@;\r\n",fileStr,key];
+                 fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, assign) BOOL      %@;\r\n",fileStr,key];
              }else{
                  NSLog(@"int");
-                 fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, assign) NSInteger  %@;\r\n",fileStr,key];
+                 fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, assign) NSInteger %@;\r\n",fileStr,key];
              }
         }
         else if([value isKindOfClass:[NSArray class]])
         {
             NSLog(@"array");
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSArray  * %@;//\r\n",fileStr,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSArray*  %@;//\r\n",fileStr,key];
             //判断是否为字典数组
             id subvalue=[value lastObject];
             if ([subvalue isKindOfClass:[NSDictionary class]]) {
@@ -183,13 +183,13 @@
         }else if([value isKindOfClass:[NSDictionary class]])
         {
             NSLog(@"NSDictionary==%@",value);
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) %@  *%@;//\r\n",fileStr,key,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) %@* %@;//\r\n",fileStr,key,key];
             NSString *classContent= [self autoCodeWithJsonDict:value modelKey:key];
             [_classString appendString:classContent];
         }else
         {
             NSLog(@"string");
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSString * %@;\r\n",fileStr,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSString* %@;\r\n",fileStr,key];
         }
     }
     fileStr = [fileStr stringByAppendingString:@"\n@end\n\n\n\n"];
