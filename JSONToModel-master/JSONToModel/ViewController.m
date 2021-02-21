@@ -14,6 +14,8 @@
 #import "MJExtension.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "HighlightingTextStorage.h"
+#import "AttributeConfig.h"
+
 
 @interface  ViewController()
 
@@ -23,6 +25,7 @@
 @property(nonatomic,copy) NSMutableString* classString;        //存类头文件内容
 @property(nonatomic, assign) BOOL isCompare;//是否将生成的属性排序
 @property (strong) IBOutlet NSButton *btnCompare;
+@property (nonatomic, strong) AttributeConfig *config;
 
 @end
 
@@ -60,18 +63,14 @@
     HighlightingTextStorage *textStorage2 = [[HighlightingTextStorage alloc]init];
     textStorage2.language=@"json";
     [textStorage2 addLayoutManager:self.inputTextView.layoutManager];
+    
+    //默认配置
+    self.config = [AttributeConfig shared];
 }
-
-#pragma mark 生成
-- (IBAction)autoCodeCreate:(id)sender {
-    self.isCompare = NO;
-    [self autoJsonToModelAcation];
-}
-
 
 #pragma mark 排序按钮点击
 - (IBAction)compareCodeCreate:(NSButton *)sender {
-    self.isCompare = YES;
+//    self.config.isCompareKey = !self.config.isCompareKey;
     [self autoJsonToModelAcation];
 }
 
@@ -151,7 +150,7 @@
     if (keyArray.count==0) return @"";
     
     //属性排序
-    if (self.isCompare) {
+    if (self.config.isCompareKey) {
         keyArray = [keyArray sortedArrayUsingSelector:@selector(compare:)];
     }
     
@@ -229,7 +228,7 @@
                    
         NSString *json=[JSONDict toReadableJSONString];
         weakSelf.inputTextView.string=json;
-        weakSelf.isCompare = YES;//key 排序
+        weakSelf.config.isCompareKey = YES;//key 排序
         [weakSelf autoJsonToModelAcation];
     } failed:^(NSError *error) {
         NSLog(@"error=%@",error);

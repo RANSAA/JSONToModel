@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FDF9F1F25E2AB1400FFF3DE /* AttributeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF9F1E25E2AB1400FFF3DE /* AttributeConfig.m */; };
 		4E2CAF8A20591F9C002B6E59 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2CAF8920591F9C002B6E59 /* AppDelegate.m */; };
 		4E2CAF8D20591F9C002B6E59 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2CAF8C20591F9C002B6E59 /* ViewController.m */; };
 		4E2CAF8F20591F9C002B6E59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2CAF8E20591F9C002B6E59 /* Assets.xcassets */; };
@@ -27,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		00A9FB2E53DCC43CD0117AE0 /* Pods-JSONToModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONToModel.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSONToModel/Pods-JSONToModel.release.xcconfig"; sourceTree = "<group>"; };
+		3FDF9F1D25E2AB1400FFF3DE /* AttributeConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributeConfig.h; sourceTree = "<group>"; };
+		3FDF9F1E25E2AB1400FFF3DE /* AttributeConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttributeConfig.m; sourceTree = "<group>"; };
 		4E2CAF8520591F9C002B6E59 /* JSONToModel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSONToModel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2CAF8820591F9C002B6E59 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4E2CAF8920591F9C002B6E59 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				4E2CAF8920591F9C002B6E59 /* AppDelegate.m */,
 				4E2CAF8B20591F9C002B6E59 /* ViewController.h */,
 				4E2CAF8C20591F9C002B6E59 /* ViewController.m */,
+				3FDF9F1D25E2AB1400FFF3DE /* AttributeConfig.h */,
+				3FDF9F1E25E2AB1400FFF3DE /* AttributeConfig.m */,
 				4E2CAFA020591FC5002B6E59 /* HighlightingTextStorage.h */,
 				4E2CAF9F20591FC5002B6E59 /* HighlightingTextStorage.m */,
 				4E2CAF8E20591F9C002B6E59 /* Assets.xcassets */,
@@ -310,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E2CAF8D20591F9C002B6E59 /* ViewController.m in Sources */,
+				3FDF9F1F25E2AB1400FFF3DE /* AttributeConfig.m in Sources */,
 				4E2CAF9520591F9C002B6E59 /* main.m in Sources */,
 				4EC88E432059279D00D75C15 /* LineNumberRulerView.swift in Sources */,
 				4EC88E3C2059265C00D75C15 /* NSDictionary+JSON.m in Sources */,
