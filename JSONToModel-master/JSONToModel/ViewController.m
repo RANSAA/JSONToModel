@@ -110,18 +110,26 @@
 }
 
 
-
+//排版显示
 -(void)handleJSON:(NSDictionary *)dic
 {
     self.jsonDict=dic;
     _classString = [NSMutableString new];
     NSString *fileStr=[self autoCodeWithJsonDict:dic modelKey:nil];
-    NSLog(@"%@", fileStr);
+    NSLog(@"fileStr-1%@", fileStr);
+    NSLog(@"dic-1%@", dic);
     
+    NSString *header = @"#import <UIKit/UIKit.h>\n\n";
+    NSString *exClass= @"\n@class data,icon_data,room_list";
+
     NSMutableString *modelCodeStr=[NSMutableString string];
+//    [modelCodeStr appendString:header];
+//    [modelCodeStr appendString:exClass];
     [modelCodeStr appendString:fileStr];
     [modelCodeStr appendString:_classString];
     self.outPutTextView.string=modelCodeStr;
+    
+//    NSLog(@"modelCodeStr:%@", modelCodeStr);
     
     [self.outPutTextView lnv_updateLineNumber];
 }
@@ -133,7 +141,8 @@
 -(NSString *)autoCodeWithJsonDict:(NSDictionary *)dic modelKey:(NSString *)classKey
 {
     if (classKey.length==0||classKey==nil) {
-        classKey=@"<#RootModel#>";
+//        classKey=@"<#RootModel#>";
+        classKey=@"RootModel";
     }
     if ([dic isKindOfClass:[NSDictionary class]]==NO) {
         return @"";
@@ -155,7 +164,7 @@
         if([value isKindOfClass:[NSString class]])
         {
             NSLog(@"string");
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, copy)   NSString* %@;\r\n",fileStr,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSString* %@;\r\n",fileStr,key];
         }
         else if([value isKindOfClass:[NSNumber class]])
         {
@@ -173,7 +182,7 @@
         else if([value isKindOfClass:[NSArray class]])
         {
             NSLog(@"array");
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSArray*  %@;//\r\n",fileStr,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSArray*  %@;//Child Model\r\n",fileStr,key];
             //判断是否为字典数组
             id subvalue=[value lastObject];
             if ([subvalue isKindOfClass:[NSDictionary class]]) {
@@ -183,7 +192,7 @@
         }else if([value isKindOfClass:[NSDictionary class]])
         {
             NSLog(@"NSDictionary==%@",value);
-            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) %@* %@;//\r\n",fileStr,key,key];
+            fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) %@* %@;//Child Model\r\n",fileStr,key,key];
             NSString *classContent= [self autoCodeWithJsonDict:value modelKey:key];
             [_classString appendString:classContent];
         }else
@@ -192,7 +201,7 @@
             fileStr = [NSString stringWithFormat:@"%@@property (nonatomic, strong) NSString* %@;\r\n",fileStr,key];
         }
     }
-    fileStr = [fileStr stringByAppendingString:@"\n@end\n\n\n\n"];
+    fileStr = [fileStr stringByAppendingString:@"\n@end\n\n\n"];
     return fileStr;
 }
 
@@ -220,9 +229,8 @@
                    
         NSString *json=[JSONDict toReadableJSONString];
         weakSelf.inputTextView.string=json;
-        weakSelf.isCompare = NO;
+        weakSelf.isCompare = YES;//key 排序
         [weakSelf autoJsonToModelAcation];
-        //[weakSelf handleJSON:JSONDict];
     } failed:^(NSError *error) {
         NSLog(@"error=%@",error);
     }];
