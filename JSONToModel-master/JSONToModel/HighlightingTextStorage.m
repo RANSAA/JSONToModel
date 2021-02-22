@@ -106,6 +106,7 @@ static NSString *const kEmotionPattern = @"\\[\\w+\\]"; // "[]"表情
             [RegexWithPattern(key) enumerateMatchesInString:self.string options:0 range:paragaphRange usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
                 [weakSelf addAttributes:attributes range:result.range];
             }];
+
         }
     }else if ([language isEqualToString:@"json"]){
         //数字高亮
@@ -119,6 +120,7 @@ static NSString *const kEmotionPattern = @"\\[\\w+\\]"; // "[]"表情
             // Add red highlight color
             [weakSelf addAttribute:NSForegroundColorAttributeName value:RGB(221,18,67) range:result.range];
         }];
+        
     }else{
         [self highligtCodeForRange:paragaphRange];
     }
@@ -144,7 +146,7 @@ static NSString *const kEmotionPattern = @"\\[\\w+\\]"; // "[]"表情
 //    NSString  *command= [NSString stringWithFormat:@"window.hljs.highlightAuto(\"%@\").value;",escapeContent(content)];
     NSString  *command = [NSString stringWithFormat:@"window.hljs.highlight(\"%@\",\"%@\").value;",@"objectivec",escapeContent(content)];
     NSString *highlightString = [[self.context evaluateScript:command] toString];
-    NSLog(@"highlight:%@",highlightString);
+    NSLog(@"highlight:\n %@",highlightString);
     [self renderContent:highlightString withRange:paragaphRange];
 }
 
@@ -212,6 +214,7 @@ static NSDictionary * kThemeInfo() {
                 //高亮关键词
                 [self addAttributes:attributs range:result.range];
             }];
+
         }
     }
 }

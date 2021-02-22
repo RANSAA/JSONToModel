@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F09B0D325E3FE760006CA5A /* ConvertToYYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F09B0D225E3FE760006CA5A /* ConvertToYYModel.m */; };
+		3F09B0D625E3FE840006CA5A /* ConvertToJsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F09B0D525E3FE840006CA5A /* ConvertToJsonModel.m */; };
+		3F09B0D925E3FEA60006CA5A /* ConvertToMJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F09B0D825E3FEA60006CA5A /* ConvertToMJExtension.m */; };
+		3FDF6C7C25E391E400286896 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF6C7B25E391E400286896 /* Config.m */; };
+		3FDF6C7F25E3A0AD00286896 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF6C7E25E3A0AD00286896 /* ShowViewController.m */; };
+		3FDF6C8225E3A9BD00286896 /* JSONSerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF6C8125E3A9BD00286896 /* JSONSerialize.m */; };
 		3FDF9F1F25E2AB1400FFF3DE /* AttributeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF9F1E25E2AB1400FFF3DE /* AttributeConfig.m */; };
 		4E2CAF8A20591F9C002B6E59 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2CAF8920591F9C002B6E59 /* AppDelegate.m */; };
 		4E2CAF8D20591F9C002B6E59 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2CAF8C20591F9C002B6E59 /* ViewController.m */; };
@@ -28,6 +34,18 @@
 
 /* Begin PBXFileReference section */
 		00A9FB2E53DCC43CD0117AE0 /* Pods-JSONToModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONToModel.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSONToModel/Pods-JSONToModel.release.xcconfig"; sourceTree = "<group>"; };
+		3F09B0D125E3FE760006CA5A /* ConvertToYYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertToYYModel.h; sourceTree = "<group>"; };
+		3F09B0D225E3FE760006CA5A /* ConvertToYYModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertToYYModel.m; sourceTree = "<group>"; };
+		3F09B0D425E3FE840006CA5A /* ConvertToJsonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertToJsonModel.h; sourceTree = "<group>"; };
+		3F09B0D525E3FE840006CA5A /* ConvertToJsonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertToJsonModel.m; sourceTree = "<group>"; };
+		3F09B0D725E3FEA60006CA5A /* ConvertToMJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertToMJExtension.h; sourceTree = "<group>"; };
+		3F09B0D825E3FEA60006CA5A /* ConvertToMJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertToMJExtension.m; sourceTree = "<group>"; };
+		3FDF6C7A25E391E400286896 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		3FDF6C7B25E391E400286896 /* Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
+		3FDF6C7D25E3A0AD00286896 /* ShowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
+		3FDF6C7E25E3A0AD00286896 /* ShowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
+		3FDF6C8025E3A9BD00286896 /* JSONSerialize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSerialize.h; sourceTree = "<group>"; };
+		3FDF6C8125E3A9BD00286896 /* JSONSerialize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSONSerialize.m; sourceTree = "<group>"; };
 		3FDF9F1D25E2AB1400FFF3DE /* AttributeConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributeConfig.h; sourceTree = "<group>"; };
 		3FDF9F1E25E2AB1400FFF3DE /* AttributeConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttributeConfig.m; sourceTree = "<group>"; };
 		4E2CAF8520591F9C002B6E59 /* JSONToModel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSONToModel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +106,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3FDF6C7825E3749500286896 /* Analysis */ = {
+			isa = PBXGroup;
+			children = (
+				3FDF6C7A25E391E400286896 /* Config.h */,
+				3FDF6C7B25E391E400286896 /* Config.m */,
+				3FDF6C8025E3A9BD00286896 /* JSONSerialize.h */,
+				3FDF6C8125E3A9BD00286896 /* JSONSerialize.m */,
+				3F09B0D125E3FE760006CA5A /* ConvertToYYModel.h */,
+				3F09B0D225E3FE760006CA5A /* ConvertToYYModel.m */,
+				3F09B0D425E3FE840006CA5A /* ConvertToJsonModel.h */,
+				3F09B0D525E3FE840006CA5A /* ConvertToJsonModel.m */,
+				3F09B0D725E3FEA60006CA5A /* ConvertToMJExtension.h */,
+				3F09B0D825E3FEA60006CA5A /* ConvertToMJExtension.m */,
+			);
+			path = Analysis;
+			sourceTree = "<group>";
+		};
 		4E2A640F205F45E7002C0F21 /* Resouces */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +164,7 @@
 		4E2CAF8720591F9C002B6E59 /* JSONToModel */ = {
 			isa = PBXGroup;
 			children = (
+				3FDF6C7825E3749500286896 /* Analysis */,
 				4E2A6410205F739F002C0F21 /* Categorys */,
 				4E2A640F205F45E7002C0F21 /* Resouces */,
 				4E2CAF9C20591FAE002B6E59 /* thirdLibs */,
@@ -136,6 +172,8 @@
 				4E2CAF8920591F9C002B6E59 /* AppDelegate.m */,
 				4E2CAF8B20591F9C002B6E59 /* ViewController.h */,
 				4E2CAF8C20591F9C002B6E59 /* ViewController.m */,
+				3FDF6C7D25E3A0AD00286896 /* ShowViewController.h */,
+				3FDF6C7E25E3A0AD00286896 /* ShowViewController.m */,
 				3FDF9F1D25E2AB1400FFF3DE /* AttributeConfig.h */,
 				3FDF9F1E25E2AB1400FFF3DE /* AttributeConfig.m */,
 				4E2CAFA020591FC5002B6E59 /* HighlightingTextStorage.h */,
@@ -191,7 +229,6 @@
 				4E2CAF8220591F9C002B6E59 /* Frameworks */,
 				4E2CAF8320591F9C002B6E59 /* Resources */,
 				F3362429FAECA00B4863A8CC /* [CP] Embed Pods Frameworks */,
-				A258A80C85F40C667C7756AF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -208,12 +245,12 @@
 		4E2CAF7D20591F9C002B6E59 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1170;
 				ORGANIZATIONNAME = hl.com.cn;
 				TargetAttributes = {
 					4E2CAF8420591F9C002B6E59 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1170;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -272,39 +309,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A258A80C85F40C667C7756AF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JSONToModel/Pods-JSONToModel-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F3362429FAECA00B4863A8CC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-JSONToModel/Pods-JSONToModel-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-JSONToModel/Pods-JSONToModel-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JSONToModel/Pods-JSONToModel-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JSONToModel/Pods-JSONToModel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -317,9 +341,15 @@
 				4E2CAF8D20591F9C002B6E59 /* ViewController.m in Sources */,
 				3FDF9F1F25E2AB1400FFF3DE /* AttributeConfig.m in Sources */,
 				4E2CAF9520591F9C002B6E59 /* main.m in Sources */,
+				3F09B0D625E3FE840006CA5A /* ConvertToJsonModel.m in Sources */,
+				3F09B0D325E3FE760006CA5A /* ConvertToYYModel.m in Sources */,
+				3FDF6C7F25E3A0AD00286896 /* ShowViewController.m in Sources */,
 				4EC88E432059279D00D75C15 /* LineNumberRulerView.swift in Sources */,
 				4EC88E3C2059265C00D75C15 /* NSDictionary+JSON.m in Sources */,
+				3F09B0D925E3FEA60006CA5A /* ConvertToMJExtension.m in Sources */,
+				3FDF6C7C25E391E400286896 /* Config.m in Sources */,
 				4EA59024205A786E00C8B6FD /* NSColor+HexColor.m in Sources */,
+				3FDF6C8225E3A9BD00286896 /* JSONSerialize.m in Sources */,
 				4EC88E392059224600D75C15 /* AFNetClient.m in Sources */,
 				4E2CAF8A20591F9C002B6E59 /* AppDelegate.m in Sources */,
 				4E2CAFA120591FC6002B6E59 /* HighlightingTextStorage.m in Sources */,
@@ -343,6 +373,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -350,6 +381,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -398,6 +430,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -405,6 +438,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -429,6 +463,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
@@ -439,6 +474,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JSONToModel/JSONToModel.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -449,7 +485,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "JSONToModel/thirdLibs/JSONToModel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -460,6 +496,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon2;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JSONToModel/JSONToModel.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -469,7 +506,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.JSONToModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "JSONToModel/thirdLibs/JSONToModel-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

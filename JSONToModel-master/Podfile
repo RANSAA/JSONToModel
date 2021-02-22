@@ -2,7 +2,9 @@
 # platform :ios, '9.0'
 def shared_dependencies
   pod 'MJExtension', '~> 3.0.13'
-  pod 'AFNetworking', '~> 3.1.0'
+#  pod 'AFNetworking', '~> 3.1.0'
+  pod 'AFNetworking'
+  pod 'YYModel'
 end
 
 
@@ -13,4 +15,6 @@ target 'JSONToModel' do
   # Pods for JSONToModel
   platform :osx, '10.9'
   shared_dependencies
+  
+#  pod 'YYModel'
 end
