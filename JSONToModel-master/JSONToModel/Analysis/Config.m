@@ -31,20 +31,13 @@
     self.isCompareKey = YES;
     self.supportMode = supportYYModel;
     self.rootName = @"RootModel";
-    self.baseName = @"NSObject";
+    self.baseRootName = @"NSObject";
+    self.baseChildName = @"NSObject";
     
     self.isSerialize = YES;
     self.isPascal = YES;
     self.isPreSuffixRootModel = NO;
     self.isMultipleFile = NO;
-}
-
-- (void)setBaseName:(NSString *)baseName
-{
-    if (baseName.length<1) {
-        baseName = @"NSObject";
-    }
-    _baseName = baseName;
 }
 
 - (void)setRootName:(NSString *)rootName
@@ -54,6 +47,23 @@
     }
     _rootName = rootName;
 }
+
+- (void)setBaseRootName:(NSString *)baseRootName
+{
+    if (baseRootName.length<1) {
+        baseRootName = @"NSObject";
+    }
+    _baseRootName = baseRootName;
+}
+
+- (void)setBaseChildName:(NSString *)baseChildName
+{
+    if (baseChildName.length < 1) {
+        baseChildName = @"NSObject";
+    }
+    _baseChildName = baseChildName;
+}
+
 
 - (NSArray *)allSupportMode
 {

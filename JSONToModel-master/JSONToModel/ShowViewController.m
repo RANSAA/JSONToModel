@@ -100,16 +100,38 @@
     [self.btnMultipleFile setAction:@selector(btnClickAction:)];
     
     //输入框
-    self.textFieldRootName.stringValue = Config.shared.rootName;
-    self.textFieldPrefixName.stringValue = Config.shared.prefixName;
-    self.textFieldSuffixName.stringValue = Config.shared.suffixName;
-    self.textFieldBaseName.stringValue = Config.shared.baseName;
+    if (Config.shared.rootName) {
+        self.textFieldRootName.stringValue   = Config.shared.rootName;
+    }else{
+        self.textFieldRootName.stringValue   = @"";
+    }
+    if (Config.shared.prefixName) {
+        self.textFieldPrefixName.stringValue   = Config.shared.prefixName;
+    }else{
+        self.textFieldPrefixName.stringValue   = @"";
+    }
+    if (Config.shared.suffixName) {
+        self.textFieldSuffixName.stringValue   = Config.shared.suffixName;
+    }else{
+        self.textFieldSuffixName.stringValue   = @"";
+    }
+    if (Config.shared.baseRootName) {
+        self.textFieldBaseRootName.stringValue   = Config.shared.baseRootName;
+    }else{
+        self.textFieldBaseRootName.stringValue   = @"";
+    }
+    if (Config.shared.baseChildName) {
+        self.textFieldBaseChildName.stringValue   = Config.shared.baseChildName;
+    }else{
+        self.textFieldBaseChildName.stringValue   = @"";
+    }
+
     
    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldNameDidChange:) name:NSControlTextDidChangeNotification object:self.textFieldRootName];
    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldNameDidChange:) name:NSControlTextDidChangeNotification object:self.textFieldPrefixName];
    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldNameDidChange:) name:NSControlTextDidChangeNotification object:self.textFieldSuffixName];
-   [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldNameDidChange:) name:NSControlTextDidChangeNotification object:self.textFieldBaseName];
-    
+   [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldNameDidChange:) name:NSControlTextDidChangeNotification object:self.textFieldBaseRootName];
+   [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldNameDidChange:) name:NSControlTextDidChangeNotification object:self.textFieldBaseChildName];
 }
 
 - (void)dealloc
@@ -175,7 +197,8 @@
     Config.shared.rootName = self.textFieldRootName.stringValue;
     Config.shared.prefixName = self.textFieldPrefixName.stringValue;
     Config.shared.suffixName = self.textFieldSuffixName.stringValue;
-    Config.shared.baseName = self.textFieldBaseName.stringValue;
+    Config.shared.baseRootName = self.textFieldBaseRootName.stringValue;
+    Config.shared.baseChildName = self.textFieldBaseChildName.stringValue;
     [Config.shared save];
 }
 

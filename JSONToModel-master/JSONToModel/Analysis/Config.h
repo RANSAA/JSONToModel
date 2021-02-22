@@ -31,7 +31,8 @@ typedef NS_ENUM(NSInteger,SupportModeType){
 @property(nonatomic, copy) NSString *rootName;//根model名称
 @property(nonatomic, copy) NSString *prefixName;//前缀名称
 @property(nonatomic, copy) NSString *suffixName;//后缀名称
-@property(nonatomic, copy) NSString *baseName;//继承对象名称
+@property(nonatomic, copy) NSString *baseRootName;//根继承对象名称
+@property(nonatomic, copy) NSString *baseChildName;//子继承对象名称
 @property(nonatomic, assign) BOOL isSerialize;//是否添加序列化, default YES
 @property(nonatomic, assign) BOOL isPascal;//是否使用帕斯卡命名方式， default YES
 @property(nonatomic, assign) BOOL isPreSuffixRootModel;//RootModel是否添加前后缀， default NO

@@ -34,8 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong) IBOutlet NSTextField *textFieldRootName;//根model名称
 @property (strong) IBOutlet NSTextField *textFieldPrefixName;//前缀名称
 @property (strong) IBOutlet NSTextField *textFieldSuffixName;//后缀名称
-@property (strong) IBOutlet NSTextField *textFieldBaseName;//继承对象名称
-
+@property (strong) IBOutlet NSTextField *textFieldBaseRootName;//根Model继承对象名称
+@property (strong) IBOutlet NSTextField *textFieldBaseChildName;//子Model继承对象名称
 
 @end
 
