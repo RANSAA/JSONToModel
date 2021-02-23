@@ -28,11 +28,13 @@
 
 - (void)defaultConfig
 {
-    self.isCompareKey = YES;
-    self.supportMode = supportYYModel;
-    self.rootName = @"RootModel";
-    self.baseRootName = @"NSObject";
-    self.baseChildName = @"NSObject";
+    self.isCompareKey   = YES;
+    self.rootName       = @"RootModel";
+    self.baseRootName   = @"NSObject";
+    self.baseChildName  = @"NSObject";
+    
+    self.supportMode    = ConvertCore.shared.allSupportMode[0];
+    self.supportType    = SupportModeTypeYYModel;
     
     self.isSerialize = YES;
     self.isPascal = YES;
@@ -62,25 +64,6 @@
         baseChildName = @"NSObject";
     }
     _baseChildName = baseChildName;
-}
-
-
-- (NSArray *)allSupportMode
-{
-    return @[supportYYModel,
-             supportJSONModel
-    ];
-}
-
-- (SupportModeType)supportType
-{
-    if ([_supportMode isEqualToString:supportYYModel]) {
-        return SupportModeTypeYYModel;
-    }
-    if ([_supportMode isEqualToString:supportJSONModel]) {
-        return SupportModeTypeJSONMode;
-    }
-    return SupportModeTypeYYModel;
 }
 
 - (void)save

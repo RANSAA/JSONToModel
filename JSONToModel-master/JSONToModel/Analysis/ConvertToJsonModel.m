@@ -7,6 +7,10 @@
 //
 
 #import "ConvertToJsonModel.h"
+#import "ConvertCore.h"
+#import "Config.h"
+
+
 
 @implementation ConvertToJsonModel
 

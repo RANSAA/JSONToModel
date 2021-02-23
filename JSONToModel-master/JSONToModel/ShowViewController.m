@@ -17,6 +17,9 @@
 
 #import "Config.h"
 #import "JSONSerialize.h"
+#import "ConvertCore.h"
+#import "ConvertJson.h"
+
 
 
 
@@ -74,7 +77,7 @@
 {
     //Pattern
     [self.itemBtnPattern removeAllItems];
-    for (NSString *mode in [Config.shared allSupportMode]) {
+    for (NSString *mode in ConvertCore.shared.allSupportMode) {
         [self.itemBtnPattern addItemWithTitle:mode];
     }
     [self.itemBtnPattern setTarget:self];
@@ -147,10 +150,8 @@
 //模式选择action
 - (void)handlePatternAction:(NSPopUpButton *)popBtn
 {
-    // 选中item 的索引
-//    NSLog(@"%ld", popBtn.indexOfSelectedItem);
-    NSString *supportMode = popBtn.selectedItem.title;
-    Config.shared.supportMode = supportMode;
+    Config.shared.supportMode = popBtn.selectedItem.title;
+    Config.shared.supportType = popBtn.indexOfSelectedItem;//选中item 的索引
     [Config.shared save];
 }
 
@@ -224,6 +225,8 @@
     JSONSerialize.shared.updateInputView = ^{
         [self updateShowText];
         [self saveTextFieldName];
+        
+        [self convert];
     };
     [JSONSerialize.shared getJsonFromUrl:inputStr];
 
@@ -235,9 +238,17 @@
     JSONSerialize.shared.updateInputView = ^{
         [self updateShowText];
         [self saveTextFieldName];
+        
+        [self convert];
     };
     [JSONSerialize.shared getJsonFromInput:inputStr];
 
+}
+
+//开始解析数据
+- (void)convert
+{
+    [ConvertJson.shared convert];
 }
 
 //保存到文件

@@ -11,6 +11,10 @@
 #import "NSDictionary+JSON.h"
 #import "MJExtension.h"
 
+#import "ConvertCore.h"
+#import "ConvertJson.h"
+
+
 @implementation JSONSerialize
 
 + (instancetype)shared
@@ -55,7 +59,6 @@
         _vildStr = @"请输入有效的url地址";
         return;
     }
-    NSLog(@"url-:%@",url);
     __weak typeof(self)weakSelf = self;
     [AFNetClient GET_Path:url completed:^(NSHTTPURLResponse *response, id JSONDict, NSData *data) {
 
@@ -66,13 +69,14 @@
     } failed:^(NSError *error) {
         NSLog(@"error=%@",error);
     }];
-    
 }
 
 //直接获取并验证输入框的字符串是否是JSON
 - (void)getJsonFromInput:(NSString *)inputStr
 {
     _showStr = inputStr;
+    ConvertCore.shared.isVildJson = NO;
+    ConvertCore.shared.jsonDict = nil;
     NSData *data = [inputStr dataUsingEncoding:NSUTF8StringEncoding];
     if (!data) {
         _isVildJson = NO;
@@ -90,15 +94,22 @@
             }else{//校验成功
                 _isVildJson = YES;
                 _vildStr = @"校验成功";
-                _resultDict = JSONDict;
+
+                //暂存有效的jsonDict数据
+                if (JSONDict.allKeys.count>0) {
+                    ConvertCore.shared.isVildJson = YES;
+                    ConvertCore.shared.jsonDict = JSONDict;
+                }
             }
         }
     }
+    
     //更新输入框
     if (self.updateInputView) {
         self.updateInputView();
     }
-//    NSLog(@"inputStr:%@",inputStr);
 }
+
+
 
 @end

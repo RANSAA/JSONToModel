@@ -13,14 +13,14 @@
 #import "Config.h"
 
 
+
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^Block)(void);
+
 @interface JSONSerialize : NSObject
 @property (nonatomic, assign) BOOL isVildJson;
 @property (nonatomic, strong) NSString *vildStr;
 @property (nonatomic, strong) NSColor  *vildColor;
-@property (nonatomic, strong) NSString *showStr;//被显示再输入框中的字符串
-@property (nonatomic, strong) NSDictionary *resultDict;//json校验成功之后，转化得到的dict
+@property (nonatomic, strong) NSString *showStr;//被显示在输入框中的字符串
 
 @property (nonatomic, copy) Block updateInputView;//回调-更新输入
 @property (nonatomic, copy) Block updateOutputView;//回调-更新输出

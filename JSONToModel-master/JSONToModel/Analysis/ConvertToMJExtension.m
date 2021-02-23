@@ -7,6 +7,9 @@
 //
 
 #import "ConvertToMJExtension.h"
+#import "ConvertCore.h"
+#import "Config.h"
+
 
 @implementation ConvertToMJExtension
 

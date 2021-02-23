@@ -8,19 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <YYModel/YYModel.h>
+#import "ConvertCore.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-/**
- 支持转换模式
- */
-static NSString *supportYYModel    = @"OC-YYModel";
-static NSString *supportJSONModel  = @"OC-JSONModel";
-
-typedef NS_ENUM(NSInteger,SupportModeType){
-    SupportModeTypeYYModel = 0,
-    SupportModeTypeJSONMode = 1
-};
 
 
 @interface Config : NSObject
@@ -38,14 +28,9 @@ typedef NS_ENUM(NSInteger,SupportModeType){
 @property(nonatomic, assign) BOOL isPreSuffixRootModel;//RootModel是否添加前后缀， default NO
 @property(nonatomic, assign) BOOL isMultipleFile;//生成的model是否保存到多个文件， default NO
 
-
-
 + (instancetype)shared;
 
-- (NSArray *)allSupportMode;
-
 - (void)save;
-
 
 @end
 
