@@ -94,11 +94,11 @@
     [self.btnPascal setTarget:self];
     [self.btnPascal setAction:@selector(btnClickAction:)];
     self.btnPreSuffixRootModel.tag = 22;
-    self.btnPreSuffixRootModel.state = Config.shared.isMultipleFile;
+    self.btnPreSuffixRootModel.state = Config.shared.isPreSuffixRootModel;
     [self.btnPreSuffixRootModel setTarget:self];
     [self.btnPreSuffixRootModel setAction:@selector(btnClickAction:)];
     self.btnMultipleFile.tag = 23;
-    self.btnMultipleFile.state = Config.shared.isPreSuffixRootModel;
+    self.btnMultipleFile.state = Config.shared.isMultipleFile;
     [self.btnMultipleFile setTarget:self];
     [self.btnMultipleFile setAction:@selector(btnClickAction:)];
     
@@ -182,7 +182,7 @@
             break;
         case 23://是否保存到多个文件
         {
-            Config.shared.isPreSuffixRootModel = state;
+            Config.shared.isMultipleFile = state;
             [Config.shared save];
         }
             break;

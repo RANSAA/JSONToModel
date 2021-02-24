@@ -12,6 +12,7 @@
 #import "ConvertToJsonModel.h"
 #import "ConvertToMJExtension.h"
 #import "ConvertResult.h"
+#import "ConvertModel.h"
 
 
 

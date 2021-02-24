@@ -1179,19 +1179,6 @@
                                                             </menu>
                                                         </popUpButtonCell>
                                                     </popUpButton>
-                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eWt-wU-s9e">
-                                                        <rect key="frame" x="1138" y="-2" width="92" height="32"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="80" id="CJS-S4-gTN"/>
-                                                        </constraints>
-                                                        <buttonCell key="cell" type="push" title="清除" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FhQ-XY-lfL">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="btnClearAction:" target="L9N-4e-UF7" id="hh4-ho-iOm"/>
-                                                        </connections>
-                                                    </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uyS-DD-auZ">
                                                         <rect key="frame" x="171" y="6" width="62" height="18"/>
                                                         <buttonCell key="cell" type="check" title="序列化" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="oMX-Ux-uJ6">
@@ -1229,12 +1216,10 @@
                                                     <constraint firstItem="ukU-p2-7LW" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="Ns2-Eg-jfW"/>
                                                     <constraint firstItem="UtC-hZ-bxE" firstAttribute="leading" secondItem="uyS-DD-auZ" secondAttribute="trailing" constant="20" id="Wrv-eS-8h4"/>
                                                     <constraint firstItem="kwI-ar-0KL" firstAttribute="leading" secondItem="UtC-hZ-bxE" secondAttribute="trailing" constant="20" id="c4o-Hs-odK"/>
-                                                    <constraint firstAttribute="trailing" secondItem="eWt-wU-s9e" secondAttribute="trailing" constant="8" id="dpW-Nc-1y9"/>
                                                     <constraint firstItem="WCI-To-u8d" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="ghT-Kn-CRz"/>
                                                     <constraint firstItem="WCI-To-u8d" firstAttribute="leading" secondItem="kwI-ar-0KL" secondAttribute="trailing" constant="20" id="mI1-Af-RFn"/>
                                                     <constraint firstItem="Edm-AN-99r" firstAttribute="leading" secondItem="ukU-p2-7LW" secondAttribute="trailing" constant="8" id="sfy-Ec-CWI"/>
                                                     <constraint firstItem="kwI-ar-0KL" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="t3E-RB-99U"/>
-                                                    <constraint firstItem="eWt-wU-s9e" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="zQh-UF-yYs"/>
                                                 </constraints>
                                             </view>
                                             <constraints>
@@ -1406,7 +1391,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G2g-Mt-2Q5">
-                                            <rect key="frame" x="397" y="1" width="110" height="32"/>
+                                            <rect key="frame" x="934" y="1" width="110" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="98" id="aOk-SZ-mPy"/>
                                             </constraints>
@@ -1419,7 +1404,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SXl-CT-vMG">
-                                            <rect key="frame" x="1132" y="1" width="110" height="32"/>
+                                            <rect key="frame" x="1112" y="1" width="110" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="98" id="Ygw-dn-Ts7"/>
                                             </constraints>
@@ -1431,12 +1416,27 @@
                                                 <action selector="btnSaveToFileAction:" target="L9N-4e-UF7" id="Ewt-Wx-Jce"/>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eWt-wU-s9e">
+                                            <rect key="frame" x="287" y="1" width="92" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="CJS-S4-gTN"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="push" title="清除" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FhQ-XY-lfL">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="btnClearAction:" target="L9N-4e-UF7" id="hh4-ho-iOm"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="SXl-CT-vMG" firstAttribute="centerY" secondItem="VAz-oX-JjE" secondAttribute="centerY" id="2hC-GC-1ze"/>
                                         <constraint firstItem="G2g-Mt-2Q5" firstAttribute="centerY" secondItem="VAz-oX-JjE" secondAttribute="centerY" id="7OK-wc-LE4"/>
+                                        <constraint firstItem="SXl-CT-vMG" firstAttribute="leading" secondItem="G2g-Mt-2Q5" secondAttribute="trailing" constant="80" id="C1F-JW-H3t"/>
                                         <constraint firstItem="57k-9m-M9t" firstAttribute="leading" secondItem="VAz-oX-JjE" secondAttribute="leading" constant="8" id="W6m-JI-0NR"/>
-                                        <constraint firstAttribute="trailing" secondItem="SXl-CT-vMG" secondAttribute="trailing" constant="20" id="yCT-hw-2M8"/>
+                                        <constraint firstItem="eWt-wU-s9e" firstAttribute="centerY" secondItem="VAz-oX-JjE" secondAttribute="centerY" id="ibO-NO-4x6"/>
+                                        <constraint firstAttribute="trailing" secondItem="SXl-CT-vMG" secondAttribute="trailing" constant="40" id="yCT-hw-2M8"/>
                                     </constraints>
                                 </view>
                                 <constraints>
@@ -1451,10 +1451,10 @@
                             <constraint firstItem="mKd-t6-1eR" firstAttribute="top" secondItem="45a-MU-rDD" secondAttribute="top" constant="4" id="7MQ-2g-ulp"/>
                             <constraint firstAttribute="bottom" secondItem="bYw-ZI-39d" secondAttribute="bottom" id="7jX-3g-wIn"/>
                             <constraint firstAttribute="trailing" secondItem="bYw-ZI-39d" secondAttribute="trailing" id="VW6-cV-7Vo"/>
-                            <constraint firstItem="G2g-Mt-2Q5" firstAttribute="leading" secondItem="tiY-qx-TaE" secondAttribute="leading" id="aQq-ee-Mio"/>
                             <constraint firstItem="mKd-t6-1eR" firstAttribute="leading" secondItem="45a-MU-rDD" secondAttribute="leading" constant="12" id="c7W-uw-tf9"/>
                             <constraint firstItem="7WQ-JM-FGp" firstAttribute="leading" secondItem="45a-MU-rDD" secondAttribute="leading" id="lZG-Va-Wyo"/>
                             <constraint firstItem="bYw-ZI-39d" firstAttribute="leading" secondItem="45a-MU-rDD" secondAttribute="leading" id="oCE-Hg-KkM"/>
+                            <constraint firstItem="eWt-wU-s9e" firstAttribute="trailing" secondItem="AXy-qt-7a5" secondAttribute="trailing" constant="-20" id="oI6-HI-hCy"/>
                             <constraint firstItem="X0h-mG-Reg" firstAttribute="top" secondItem="7WQ-JM-FGp" secondAttribute="bottom" constant="4" id="oJx-VA-euV"/>
                             <constraint firstAttribute="trailing" secondItem="mKd-t6-1eR" secondAttribute="trailing" constant="12" id="olI-ye-9nb"/>
                             <constraint firstItem="7WQ-JM-FGp" firstAttribute="top" secondItem="mKd-t6-1eR" secondAttribute="bottom" id="pRk-bI-tLi"/>

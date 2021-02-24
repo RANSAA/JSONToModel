@@ -34,6 +34,11 @@
 - (NSData *)toJSONData;
 
 
+/** 返回字符串，该字符串的格式为字典，如：
+    return @{@"key":@"value"};
+ */
+- (NSString *)toPorpertyString;
+
 
 @end
 

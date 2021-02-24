@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		3F0637C125E4D0C10059697E /* ConvertJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0637C025E4D0C10059697E /* ConvertJson.m */; };
 		3F0637C425E4D9050059697E /* ConvertCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0637C325E4D9050059697E /* ConvertCore.m */; };
-		3F0637C625E4DCD80059697E /* Describe.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F0637C525E4DCD70059697E /* Describe.json */; };
-		3F0637C825E52DBF0059697E /* Coding.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F0637C725E52DBF0059697E /* Coding.json */; };
 		3F0637CB25E546F80059697E /* ConvertResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0637CA25E546F80059697E /* ConvertResult.m */; };
-		3F0637CE25E54F770059697E /* ReadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0637CD25E54F770059697E /* ReadFile.m */; };
+		3F07FD5125E64E660011EAE3 /* OptionalSetting.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F07FD5025E64E660011EAE3 /* OptionalSetting.json */; };
+		3F07FD5425E6525F0011EAE3 /* SettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07FD5325E6525F0011EAE3 /* SettingManager.m */; };
+		3F07FD5725E65C420011EAE3 /* ConvertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07FD5625E65C420011EAE3 /* ConvertModel.m */; };
 		3F09B0D325E3FE760006CA5A /* ConvertToYYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F09B0D225E3FE760006CA5A /* ConvertToYYModel.m */; };
 		3F09B0D625E3FE840006CA5A /* ConvertToJsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F09B0D525E3FE840006CA5A /* ConvertToJsonModel.m */; };
 		3F09B0D925E3FEA60006CA5A /* ConvertToMJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F09B0D825E3FEA60006CA5A /* ConvertToMJExtension.m */; };
@@ -44,12 +44,13 @@
 		3F0637C025E4D0C10059697E /* ConvertJson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertJson.m; sourceTree = "<group>"; };
 		3F0637C225E4D9050059697E /* ConvertCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertCore.h; sourceTree = "<group>"; };
 		3F0637C325E4D9050059697E /* ConvertCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertCore.m; sourceTree = "<group>"; };
-		3F0637C525E4DCD70059697E /* Describe.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Describe.json; sourceTree = "<group>"; };
-		3F0637C725E52DBF0059697E /* Coding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Coding.json; sourceTree = "<group>"; };
 		3F0637C925E546F80059697E /* ConvertResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertResult.h; sourceTree = "<group>"; };
 		3F0637CA25E546F80059697E /* ConvertResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertResult.m; sourceTree = "<group>"; };
-		3F0637CC25E54F770059697E /* ReadFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadFile.h; sourceTree = "<group>"; };
-		3F0637CD25E54F770059697E /* ReadFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadFile.m; sourceTree = "<group>"; };
+		3F07FD5025E64E660011EAE3 /* OptionalSetting.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OptionalSetting.json; sourceTree = "<group>"; };
+		3F07FD5225E6525F0011EAE3 /* SettingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingManager.h; sourceTree = "<group>"; };
+		3F07FD5325E6525F0011EAE3 /* SettingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingManager.m; sourceTree = "<group>"; };
+		3F07FD5525E65C420011EAE3 /* ConvertModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertModel.h; sourceTree = "<group>"; };
+		3F07FD5625E65C420011EAE3 /* ConvertModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertModel.m; sourceTree = "<group>"; };
 		3F09B0D125E3FE760006CA5A /* ConvertToYYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertToYYModel.h; sourceTree = "<group>"; };
 		3F09B0D225E3FE760006CA5A /* ConvertToYYModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertToYYModel.m; sourceTree = "<group>"; };
 		3F09B0D425E3FE840006CA5A /* ConvertToJsonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertToJsonModel.h; sourceTree = "<group>"; };
@@ -131,6 +132,8 @@
 				3FDF6C8125E3A9BD00286896 /* JSONSerialize.m */,
 				3F0637C225E4D9050059697E /* ConvertCore.h */,
 				3F0637C325E4D9050059697E /* ConvertCore.m */,
+				3F07FD5525E65C420011EAE3 /* ConvertModel.h */,
+				3F07FD5625E65C420011EAE3 /* ConvertModel.m */,
 				3F0637BF25E4D0C10059697E /* ConvertJson.h */,
 				3F0637C025E4D0C10059697E /* ConvertJson.m */,
 				3F0637C925E546F80059697E /* ConvertResult.h */,
@@ -141,10 +144,9 @@
 				3F09B0D525E3FE840006CA5A /* ConvertToJsonModel.m */,
 				3F09B0D725E3FEA60006CA5A /* ConvertToMJExtension.h */,
 				3F09B0D825E3FEA60006CA5A /* ConvertToMJExtension.m */,
-				3F0637CC25E54F770059697E /* ReadFile.h */,
-				3F0637CD25E54F770059697E /* ReadFile.m */,
-				3F0637C525E4DCD70059697E /* Describe.json */,
-				3F0637C725E52DBF0059697E /* Coding.json */,
+				3F07FD5225E6525F0011EAE3 /* SettingManager.h */,
+				3F07FD5325E6525F0011EAE3 /* SettingManager.m */,
+				3F07FD5025E64E660011EAE3 /* OptionalSetting.json */,
 			);
 			path = Analysis;
 			sourceTree = "<group>";
@@ -305,13 +307,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EA5901F205A6D1D00C8B6FD /* xcodetheme.css in Resources */,
-				3F0637C825E52DBF0059697E /* Coding.json in Resources */,
 				4EA59021205A6F0800C8B6FD /* cssjson.js in Resources */,
 				4EA5901B205A22F100C8B6FD /* highlight.min.js in Resources */,
 				4E6E79AE205C0D0000EC0EDF /* xcodetheme.json in Resources */,
 				4E411A57205B7DBD00299DD5 /* objectivec.min.js in Resources */,
 				4E2CAF8F20591F9C002B6E59 /* Assets.xcassets in Resources */,
-				3F0637C625E4DCD80059697E /* Describe.json in Resources */,
+				3F07FD5125E64E660011EAE3 /* OptionalSetting.json in Resources */,
 				4EC88E362059211B00D75C15 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,11 +367,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F07FD5425E6525F0011EAE3 /* SettingManager.m in Sources */,
 				4E2CAF8D20591F9C002B6E59 /* ViewController.m in Sources */,
-				3F0637CE25E54F770059697E /* ReadFile.m in Sources */,
 				3FDF9F1F25E2AB1400FFF3DE /* AttributeConfig.m in Sources */,
 				3F0637CB25E546F80059697E /* ConvertResult.m in Sources */,
 				4E2CAF9520591F9C002B6E59 /* main.m in Sources */,
+				3F07FD5725E65C420011EAE3 /* ConvertModel.m in Sources */,
 				3F0637C125E4D0C10059697E /* ConvertJson.m in Sources */,
 				3F09B0D625E3FE840006CA5A /* ConvertToJsonModel.m in Sources */,
 				3F09B0D325E3FE760006CA5A /* ConvertToYYModel.m in Sources */,
@@ -513,7 +515,7 @@
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = JSONToModel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.JSONToModel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.JSONToModel1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "JSONToModel/thirdLibs/JSONToModel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -535,7 +537,7 @@
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = JSONToModel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.JSONToModel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.JSONToModel1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "JSONToModel/thirdLibs/JSONToModel-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

@@ -10,6 +10,7 @@
 #import "ConvertCore.h"
 #import "Config.h"
 #import "ConvertResult.h"
+#import "ConvertModel.h"
 
 
 

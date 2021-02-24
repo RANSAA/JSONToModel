@@ -48,6 +48,25 @@
 }
 
 
+/** 返回字符串，该字符串的格式为字典，如：
+    return @{@"key":@"value"};
+ */
+- (NSString *)toPorpertyString
+{
+    NSMutableString *str = [[NSMutableString alloc] initWithString:@"@{"];
+    NSInteger index = 0;
+    for (NSString *key in self.allKeys) {
+        NSString *value = self[key];
+        if (index == 0) {
+            [str appendFormat:@"@\"%@\":@\"%@\"",key,value];
+        }else{
+            [str appendFormat:@",\n\t\t\t @\"%@\":@\"%@\"",key,value];
+        }
+        index++;
+    }
+    [str appendString:@"}"];
+    return str;
+}
 
 
 

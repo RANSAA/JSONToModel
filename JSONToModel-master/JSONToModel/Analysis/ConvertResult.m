@@ -23,6 +23,7 @@
 {
     if (self = [super init]) {
         _aryManualHandKey = @[].mutableCopy;
+        _aryCustomModelNames = @[].mutableCopy;
         
     }
     return self;
@@ -32,6 +33,7 @@
 - (void)resetEnv
 {
     [_aryManualHandKey removeAllObjects];
+    [_aryCustomModelNames removeAllObjects];
 }
 
 @end

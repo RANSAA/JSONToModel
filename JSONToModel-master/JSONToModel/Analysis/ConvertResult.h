@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ConvertResult : NSObject
 
 @property(nonatomic, strong) NSMutableArray *aryManualHandKey;//记录需要进行手动转换的字段
+@property(nonatomic, strong) NSMutableArray *aryCustomModelNames;//记录所有生成model(RootModel除外)的名称
+
 
 + (instancetype)shared;
 
