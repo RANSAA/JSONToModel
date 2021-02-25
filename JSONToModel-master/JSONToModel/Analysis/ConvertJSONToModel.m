@@ -6,21 +6,18 @@
 //  Copyright © 2021 hl.com.cn. All rights reserved.
 //
 
-#import "ConvertJson.h"
+#import "ConvertJSONToModel.h"
 #import "ConvertCore.h"
-#import "ConvertToYYModel.h"
-#import "ConvertToJsonModel.h"
-#import "ConvertToMJExtension.h"
 #import "ConvertResult.h"
 #import "ConvertModel.h"
 
 
 
 
-@interface ConvertJson ()
+@interface ConvertJSONToModel ()
 @end
 
-@implementation ConvertJson
+@implementation ConvertJSONToModel
 
 + (instancetype)shared
 {
@@ -77,6 +74,17 @@
     node.modelName = rootName;
     node.baseModelName = Config.shared.baseRootName;
     [node analysisRootDict];
+    
+    
+    //处理转换结果
+    [self convertResult];
+}
+
+- (void)convertResult
+{
+    if (self.completed) {
+        self.completed([ConvertResult.shared getShowString]);
+    }
 }
 
 @end

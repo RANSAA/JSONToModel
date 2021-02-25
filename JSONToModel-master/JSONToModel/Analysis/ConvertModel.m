@@ -14,7 +14,6 @@
 
 
 @interface ConvertModel ()
-@property (nonatomic, strong) NSMutableArray *aryAttrValues;
 @end
 
 @implementation ConvertModel
@@ -60,10 +59,9 @@
     
     //递归处理所有key，value
     for (NSInteger index=0; index<_aryAttrValues.count; index++) {
-        NSString *key = _aryAttrName[index];//
+        NSString *key = _aryAttrName[index];
         id value = _aryAttrValues[index];
-        //属性类型获取
-        NSString *type = [self attrTypeWithValue:value];
+        NSString *type = [self attrTypeWithValue:value];//属性类型获取
         [_aryAttrType addObject:type];
         [self codeChildModeWithKey:key value:value type:type index:index model:self];
     }
@@ -75,7 +73,7 @@
     
     [self saveJsonToModelPorperty];
     
-    NSLog(@"des:\n%@",self);
+//    NSLog(@"des:\n%@",self);
 }
 
 //检查关键字属性是否需要映射
@@ -269,23 +267,23 @@
 {
     NSString *str = @"";
     if ([type isEqualToString:@"BOOL"]) {
-        str = [NSString stringWithFormat:@"@property (nonatomic, assign) BOOL\t\t%@; \n",key];
+        str = [NSString stringWithFormat:@"@property (nonatomic, assign) BOOL %@;\n",key];
     }else if ([type isEqualToString:@"CGFloat"]){
-        str = [NSString stringWithFormat:@"@property (nonatomic, assign) CGFloat\t%@; \n",key];
+        str = [NSString stringWithFormat:@"@property (nonatomic, assign) CGFloat %@;\n",key];
     }else if ([type isEqualToString:@"NSInteger"]) {
-        str = [NSString stringWithFormat:@"@property (nonatomic, assign) NSInteger\t%@; \n",key];
+        str = [NSString stringWithFormat:@"@property (nonatomic, assign) NSInteger %@;\n",key];
     }else if ([type isEqualToString:@"NSString"]){
-        str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSString*\t%@; \n",key];
+        str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSString *%@;\n",key];
     }else if ([type isEqualToString:@"NSArray"]){
         //判断容器内的模型，进行标记
         NSString *modelName = [self pascalName:key];
         if ([_childModelTypeAry.allValues containsObject:modelName]) {
-            str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray*\t%@;  //%@ \n",key,modelName];
+            str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@;//%@ \n",key,modelName];
         }else{
-            str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray*\t%@; \n",key];
+            str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@;\n",key];
         }
     }else{//NSDictionary to child Model
-        str = [NSString stringWithFormat:@"@property (nonatomic, strong) %@*\t%@; \n",type,key];
+            str = [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *%@;\n",type,key];
     }
     return str;
 }
@@ -302,6 +300,8 @@
         default:
             break;
     }
+    //暂存
+    [ConvertResult.shared addHString:_hString name:_modelName];
 }
 
 #pragma mark 合成Implementation部分,即 .m文件部分
@@ -316,6 +316,8 @@
         default:
             break;
     }
+    //暂存
+    [ConvertResult.shared addMString:_mString];
 }
 
 #pragma mark 保存json转换结果
@@ -352,7 +354,7 @@
     
     [self customPropertyGenericClass];
 
-    [_mString appendFormat:@"\n@end \n\n"];
+    [_mString appendFormat:@"@end \n\n"];
 }
 
 
@@ -415,7 +417,7 @@
 
         }
     }
-    [_mString appendFormat:@"@implementation %@ \n",_modelName];
+    [_mString appendFormat:@"@implementation %@ \n\n",_modelName];
 }
 
 //处理序列化设置
@@ -425,7 +427,7 @@
         SupportModeType type = Config.shared.supportType;
         switch (type) {
             case SupportModeTypeYYModel:{
-                [_mString appendFormat:@"\n%@\n",[SettingManager.shared getSerializeCofingWith:Config.shared.supportType]];
+                [_mString appendFormat:@"%@\n",[SettingManager.shared getSerializeCofingWith:Config.shared.supportType]];
             }
                 break;
                 
@@ -445,7 +447,7 @@
                 NSString *dicStr = [_mappingPorpertys toPorpertyString];
                 NSString *mappingStr = [SettingManager.shared getModelCustomPropertyMapperWithType:type];
                 mappingStr = [mappingStr stringByReplacingOccurrencesOfString:@"[dicString]" withString:dicStr];
-                [_mString appendFormat:@"\n%@\n",mappingStr];
+                [_mString appendFormat:@"%@\n",mappingStr];
             }
                 break;
                 
@@ -462,10 +464,10 @@
         SupportModeType type = Config.shared.supportType;
         switch (type) {
             case SupportModeTypeYYModel:{
-                NSString *dicStr = [self customGenericClass];
+                NSString *dicStr = [self toGenericClassString];
                 NSString *mappingStr = [SettingManager.shared getModelCustomPropertyGenericClassWithType:type];
                 mappingStr = [mappingStr stringByReplacingOccurrencesOfString:@"[dicString]" withString:dicStr];
-                [_mString appendFormat:@"%@",mappingStr];
+                [_mString appendFormat:@"%@\n",mappingStr];
             }
                 break;
                 
@@ -475,7 +477,7 @@
     }
 }
 
-- (NSString *)customGenericClass
+- (NSString *)toGenericClassString
 {
     NSMutableString *classStr = [[NSMutableString alloc] init];
     BOOL insert = NO;

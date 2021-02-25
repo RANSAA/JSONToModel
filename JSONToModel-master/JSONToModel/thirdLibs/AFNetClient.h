@@ -17,7 +17,7 @@ typedef void (^MTFailedBlock)(NSError *error);
 
 + (AFHTTPSessionManager *)defaultManager;
 
-+ (void)uploadImage;
+//+ (void)uploadImage;
 
 
 /**

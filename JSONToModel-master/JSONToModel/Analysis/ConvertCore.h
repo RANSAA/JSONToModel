@@ -15,6 +15,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^Block)(void);
+typedef void(^BlockValue)(NSString *str);
 
 //转换模式对应了类型标记
 typedef NS_ENUM(NSInteger,SupportModeType){

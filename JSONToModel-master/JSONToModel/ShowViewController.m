@@ -18,8 +18,8 @@
 #import "Config.h"
 #import "JSONSerialize.h"
 #import "ConvertCore.h"
-#import "ConvertJson.h"
-
+#import "ConvertJSONToModel.h"
+#import "ConvertResult.h"
 
 
 
@@ -150,6 +150,7 @@
 //模式选择action
 - (void)handlePatternAction:(NSPopUpButton *)popBtn
 {
+    self.outPutTextView.string = @"";
     Config.shared.supportMode = popBtn.selectedItem.title;
     Config.shared.supportType = popBtn.indexOfSelectedItem;//选中item 的索引
     [Config.shared save];
@@ -216,7 +217,38 @@
 - (IBAction)btnClearAction:(NSButton *)sender {
     self.inputTextView.string = @"";
     self.textFieldVildTips.stringValue = @"";
+    self.outPutTextView.string = @"";
     NSLog(@"这儿还需要清除输入框的数据与缓存的json解析数据");
+}
+
+//选择文件
+- (IBAction)btnChoiceAction:(NSButton *)sender {
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    openPanel.allowsOtherFileTypes = false;
+    openPanel.treatsFilePackagesAsDirectories = false;
+    openPanel.canChooseFiles = true;
+    openPanel.canChooseDirectories = false;
+    openPanel.canCreateDirectories = false;
+    openPanel.prompt = @"选择";
+    [openPanel beginSheetModalForWindow:NSApplication.sharedApplication.keyWindow completionHandler:^(NSModalResponse result) {
+        if (result == NSModalResponseOK) {
+            NSLog(@"path:%@",openPanel.URL.path);
+            NSError *err = nil;
+            NSString *fileString = [NSString stringWithContentsOfURL:openPanel.URL encoding:NSUTF8StringEncoding error:&err];
+            [self analysisFileWithString:fileString];
+        }
+    }];
+}
+
+- (void)analysisFileWithString:(NSString *)inputStr
+{
+    JSONSerialize.shared.updateInputView = ^{
+        [self updateShowText];
+        [self saveTextFieldName];
+        
+        [self convert];
+    };
+    [JSONSerialize.shared getJsonFromInput:inputStr];
 }
 
 //从url获取数据并解析--> Go
@@ -229,7 +261,6 @@
         [self convert];
     };
     [JSONSerialize.shared getJsonFromUrl:inputStr];
-
 }
 
 //直接解析左边输入框的string--> Model
@@ -242,18 +273,22 @@
         [self convert];
     };
     [JSONSerialize.shared getJsonFromInput:inputStr];
-
 }
 
-//开始解析数据
+//开始转化json数据
 - (void)convert
 {
-    [ConvertJson.shared convert];
+    ConvertJSONToModel.shared.completed = ^(NSString * _Nonnull str) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.outPutTextView.string = str;
+        });
+    };
+    [ConvertJSONToModel.shared convert];
 }
 
 //保存到文件
 - (IBAction)btnSaveToFileAction:(NSButton *)sender {
-    NSLog(@"保存到文件...");
+    [ConvertResult.shared saveAs];
 }
 
 @end

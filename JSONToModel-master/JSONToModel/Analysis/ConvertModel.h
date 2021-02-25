@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *modelName;//该模型的名称
 @property (nonatomic, copy) NSString *baseModelName;//继承模型的名称
 @property (nonatomic, strong) NSMutableArray *aryAttrName;//所有属性的名称,allKeys
+@property (nonatomic, strong) NSMutableArray *aryAttrValues;//所有属性对应的值,allValues
 @property (nonatomic, strong) NSMutableArray *aryAttrType;//所有属性对应的类型名称,如@"NSString"，@"BOOL"，@"NSDictionary"
 
 @property (nonatomic, strong) NSMutableDictionary *childModelTypeDic;//用于存放定制NSDictionary的类型的标记,属性类型名需要转化

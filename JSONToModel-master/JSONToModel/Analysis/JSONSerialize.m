@@ -12,7 +12,7 @@
 #import "MJExtension.h"
 
 #import "ConvertCore.h"
-#import "ConvertJson.h"
+#import "ConvertJSONToModel.h"
 
 
 @implementation JSONSerialize

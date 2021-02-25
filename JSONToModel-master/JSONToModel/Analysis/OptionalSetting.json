@@ -19,12 +19,12 @@
   },
   "AnalyticModel": {
     "0": "OC-YYModel",
-    "1": "OC-JSONModel",
-    "2": "OC-MJExtension"
+    "1": "OC-MJExtension",
+    "2": "OC-JSONModel"
   },
   "SerializeConfig": {
     "OC-YYModel": [
-      "\n//YYModel  Coding/Copying/hash/equal/description",
+      "//YYModel  Coding/Copying/hash/equal/description",
       "- (void)encodeWithCoder:(NSCoder *)aCoder { [self yy_modelEncodeWithCoder:aCoder]; }",
       "- (id)initWithCoder:(NSCoder *)aDecoder { self = [super init]; return [self yy_modelInitWithCoder:aDecoder]; }",
       "- (id)copyWithZone:(NSZone *)zone { return [self yy_modelCopy]; }",
@@ -48,7 +48,7 @@
 ,
   "CustomPropertyGenericClass": {
     "OC-YYModel": [
-      "// 返回容器类中的所需要存放的数据类型 (以 Class 或 Class Name 的形式)。\n+ (NSDictionary *)modelContainerPropertyGenericClass {\n    return [dicString];\n}"
+      "//返回容器类中的所需要存放的数据类型 (以 Class 或 Class Name 的形式)。\n+ (NSDictionary *)modelContainerPropertyGenericClass {\n    return [dicString];\n}"
     ]
   }
 }

@@ -7,21 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F0637C125E4D0C10059697E /* ConvertJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0637C025E4D0C10059697E /* ConvertJson.m */; };
+		3F0637C125E4D0C10059697E /* ConvertJSONToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0637C025E4D0C10059697E /* ConvertJSONToModel.m */; };
 		3F0637C425E4D9050059697E /* ConvertCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0637C325E4D9050059697E /* ConvertCore.m */; };
 		3F0637CB25E546F80059697E /* ConvertResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0637CA25E546F80059697E /* ConvertResult.m */; };
 		3F07FD5125E64E660011EAE3 /* OptionalSetting.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F07FD5025E64E660011EAE3 /* OptionalSetting.json */; };
 		3F07FD5425E6525F0011EAE3 /* SettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07FD5325E6525F0011EAE3 /* SettingManager.m */; };
 		3F07FD5725E65C420011EAE3 /* ConvertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07FD5625E65C420011EAE3 /* ConvertModel.m */; };
-		3F09B0D325E3FE760006CA5A /* ConvertToYYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F09B0D225E3FE760006CA5A /* ConvertToYYModel.m */; };
-		3F09B0D625E3FE840006CA5A /* ConvertToJsonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F09B0D525E3FE840006CA5A /* ConvertToJsonModel.m */; };
-		3F09B0D925E3FEA60006CA5A /* ConvertToMJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F09B0D825E3FEA60006CA5A /* ConvertToMJExtension.m */; };
+		3FD86E4C25E7B8F8008D1A5C /* ConvertModel+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD86E4B25E7B8F8008D1A5C /* ConvertModel+YYModel.m */; };
 		3FDF6C7C25E391E400286896 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF6C7B25E391E400286896 /* Config.m */; };
 		3FDF6C7F25E3A0AD00286896 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF6C7E25E3A0AD00286896 /* ShowViewController.m */; };
 		3FDF6C8225E3A9BD00286896 /* JSONSerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF6C8125E3A9BD00286896 /* JSONSerialize.m */; };
 		3FDF9F1F25E2AB1400FFF3DE /* AttributeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF9F1E25E2AB1400FFF3DE /* AttributeConfig.m */; };
 		4E2CAF8A20591F9C002B6E59 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2CAF8920591F9C002B6E59 /* AppDelegate.m */; };
-		4E2CAF8D20591F9C002B6E59 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2CAF8C20591F9C002B6E59 /* ViewController.m */; };
 		4E2CAF8F20591F9C002B6E59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2CAF8E20591F9C002B6E59 /* Assets.xcassets */; };
 		4E2CAF9520591F9C002B6E59 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2CAF9420591F9C002B6E59 /* main.m */; };
 		4E2CAFA120591FC6002B6E59 /* HighlightingTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2CAF9F20591FC5002B6E59 /* HighlightingTextStorage.m */; };
@@ -40,8 +37,8 @@
 
 /* Begin PBXFileReference section */
 		00A9FB2E53DCC43CD0117AE0 /* Pods-JSONToModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONToModel.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSONToModel/Pods-JSONToModel.release.xcconfig"; sourceTree = "<group>"; };
-		3F0637BF25E4D0C10059697E /* ConvertJson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertJson.h; sourceTree = "<group>"; };
-		3F0637C025E4D0C10059697E /* ConvertJson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertJson.m; sourceTree = "<group>"; };
+		3F0637BF25E4D0C10059697E /* ConvertJSONToModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertJSONToModel.h; sourceTree = "<group>"; };
+		3F0637C025E4D0C10059697E /* ConvertJSONToModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertJSONToModel.m; sourceTree = "<group>"; };
 		3F0637C225E4D9050059697E /* ConvertCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertCore.h; sourceTree = "<group>"; };
 		3F0637C325E4D9050059697E /* ConvertCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertCore.m; sourceTree = "<group>"; };
 		3F0637C925E546F80059697E /* ConvertResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertResult.h; sourceTree = "<group>"; };
@@ -51,12 +48,8 @@
 		3F07FD5325E6525F0011EAE3 /* SettingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingManager.m; sourceTree = "<group>"; };
 		3F07FD5525E65C420011EAE3 /* ConvertModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertModel.h; sourceTree = "<group>"; };
 		3F07FD5625E65C420011EAE3 /* ConvertModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertModel.m; sourceTree = "<group>"; };
-		3F09B0D125E3FE760006CA5A /* ConvertToYYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertToYYModel.h; sourceTree = "<group>"; };
-		3F09B0D225E3FE760006CA5A /* ConvertToYYModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertToYYModel.m; sourceTree = "<group>"; };
-		3F09B0D425E3FE840006CA5A /* ConvertToJsonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertToJsonModel.h; sourceTree = "<group>"; };
-		3F09B0D525E3FE840006CA5A /* ConvertToJsonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertToJsonModel.m; sourceTree = "<group>"; };
-		3F09B0D725E3FEA60006CA5A /* ConvertToMJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertToMJExtension.h; sourceTree = "<group>"; };
-		3F09B0D825E3FEA60006CA5A /* ConvertToMJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertToMJExtension.m; sourceTree = "<group>"; };
+		3FD86E4A25E7B8F8008D1A5C /* ConvertModel+YYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ConvertModel+YYModel.h"; sourceTree = "<group>"; };
+		3FD86E4B25E7B8F8008D1A5C /* ConvertModel+YYModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ConvertModel+YYModel.m"; sourceTree = "<group>"; };
 		3FDF6C7A25E391E400286896 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		3FDF6C7B25E391E400286896 /* Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		3FDF6C7D25E3A0AD00286896 /* ShowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
@@ -68,8 +61,6 @@
 		4E2CAF8520591F9C002B6E59 /* JSONToModel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSONToModel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2CAF8820591F9C002B6E59 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4E2CAF8920591F9C002B6E59 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4E2CAF8B20591F9C002B6E59 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4E2CAF8C20591F9C002B6E59 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4E2CAF8E20591F9C002B6E59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E2CAF9320591F9C002B6E59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E2CAF9420591F9C002B6E59 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -128,25 +119,21 @@
 			children = (
 				3FDF6C7A25E391E400286896 /* Config.h */,
 				3FDF6C7B25E391E400286896 /* Config.m */,
-				3FDF6C8025E3A9BD00286896 /* JSONSerialize.h */,
-				3FDF6C8125E3A9BD00286896 /* JSONSerialize.m */,
 				3F0637C225E4D9050059697E /* ConvertCore.h */,
 				3F0637C325E4D9050059697E /* ConvertCore.m */,
+				3F0637BF25E4D0C10059697E /* ConvertJSONToModel.h */,
+				3F0637C025E4D0C10059697E /* ConvertJSONToModel.m */,
 				3F07FD5525E65C420011EAE3 /* ConvertModel.h */,
 				3F07FD5625E65C420011EAE3 /* ConvertModel.m */,
-				3F0637BF25E4D0C10059697E /* ConvertJson.h */,
-				3F0637C025E4D0C10059697E /* ConvertJson.m */,
+				3FD86E4A25E7B8F8008D1A5C /* ConvertModel+YYModel.h */,
+				3FD86E4B25E7B8F8008D1A5C /* ConvertModel+YYModel.m */,
 				3F0637C925E546F80059697E /* ConvertResult.h */,
 				3F0637CA25E546F80059697E /* ConvertResult.m */,
-				3F09B0D125E3FE760006CA5A /* ConvertToYYModel.h */,
-				3F09B0D225E3FE760006CA5A /* ConvertToYYModel.m */,
-				3F09B0D425E3FE840006CA5A /* ConvertToJsonModel.h */,
-				3F09B0D525E3FE840006CA5A /* ConvertToJsonModel.m */,
-				3F09B0D725E3FEA60006CA5A /* ConvertToMJExtension.h */,
-				3F09B0D825E3FEA60006CA5A /* ConvertToMJExtension.m */,
+				3FDF6C8025E3A9BD00286896 /* JSONSerialize.h */,
+				3FDF6C8125E3A9BD00286896 /* JSONSerialize.m */,
+				3F07FD5025E64E660011EAE3 /* OptionalSetting.json */,
 				3F07FD5225E6525F0011EAE3 /* SettingManager.h */,
 				3F07FD5325E6525F0011EAE3 /* SettingManager.m */,
-				3F07FD5025E64E660011EAE3 /* OptionalSetting.json */,
 			);
 			path = Analysis;
 			sourceTree = "<group>";
@@ -198,8 +185,6 @@
 				4E2CAF9C20591FAE002B6E59 /* thirdLibs */,
 				4E2CAF8820591F9C002B6E59 /* AppDelegate.h */,
 				4E2CAF8920591F9C002B6E59 /* AppDelegate.m */,
-				4E2CAF8B20591F9C002B6E59 /* ViewController.h */,
-				4E2CAF8C20591F9C002B6E59 /* ViewController.m */,
 				3FDF6C7D25E3A0AD00286896 /* ShowViewController.h */,
 				3FDF6C7E25E3A0AD00286896 /* ShowViewController.m */,
 				3FDF9F1D25E2AB1400FFF3DE /* AttributeConfig.h */,
@@ -368,19 +353,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F07FD5425E6525F0011EAE3 /* SettingManager.m in Sources */,
-				4E2CAF8D20591F9C002B6E59 /* ViewController.m in Sources */,
 				3FDF9F1F25E2AB1400FFF3DE /* AttributeConfig.m in Sources */,
 				3F0637CB25E546F80059697E /* ConvertResult.m in Sources */,
 				4E2CAF9520591F9C002B6E59 /* main.m in Sources */,
 				3F07FD5725E65C420011EAE3 /* ConvertModel.m in Sources */,
-				3F0637C125E4D0C10059697E /* ConvertJson.m in Sources */,
-				3F09B0D625E3FE840006CA5A /* ConvertToJsonModel.m in Sources */,
-				3F09B0D325E3FE760006CA5A /* ConvertToYYModel.m in Sources */,
+				3F0637C125E4D0C10059697E /* ConvertJSONToModel.m in Sources */,
+				3FD86E4C25E7B8F8008D1A5C /* ConvertModel+YYModel.m in Sources */,
 				3FDF6C7F25E3A0AD00286896 /* ShowViewController.m in Sources */,
 				3F0637C425E4D9050059697E /* ConvertCore.m in Sources */,
 				4EC88E432059279D00D75C15 /* LineNumberRulerView.swift in Sources */,
 				4EC88E3C2059265C00D75C15 /* NSDictionary+JSON.m in Sources */,
-				3F09B0D925E3FEA60006CA5A /* ConvertToMJExtension.m in Sources */,
 				3FDF6C7C25E391E400286896 /* Config.m in Sources */,
 				4EA59024205A786E00C8B6FD /* NSColor+HexColor.m in Sources */,
 				3FDF6C8225E3A9BD00286896 /* JSONSerialize.m in Sources */,

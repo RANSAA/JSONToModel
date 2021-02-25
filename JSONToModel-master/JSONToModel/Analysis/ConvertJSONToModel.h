@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "Config.h"
+#import "ConvertCore.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ConvertJson : NSObject
+@interface ConvertJSONToModel : NSObject
+
+@property (nonatomic, copy) BlockValue completed;//回调-更新输出
+
 
 + (instancetype)shared;
 

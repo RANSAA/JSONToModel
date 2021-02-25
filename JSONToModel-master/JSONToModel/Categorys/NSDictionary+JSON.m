@@ -60,7 +60,7 @@
         if (index == 0) {
             [str appendFormat:@"@\"%@\":@\"%@\"",key,value];
         }else{
-            [str appendFormat:@",\n\t\t\t @\"%@\":@\"%@\"",key,value];
+            [str appendFormat:@",\n\t\t\t   @\"%@\":@\"%@\"",key,value];
         }
         index++;
     }
