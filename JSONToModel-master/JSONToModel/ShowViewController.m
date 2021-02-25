@@ -145,6 +145,11 @@
 - (void)textFieldNameDidChange:(NSTextField *)textField
 {
     [self saveTextFieldName];
+    
+    //开始解析json
+    if (self.inputTextView.string.length > 0) {
+        [self analysisJsonFromInputString];
+    }
 }
 
 //模式选择action
@@ -154,6 +159,11 @@
     Config.shared.supportMode = popBtn.selectedItem.title;
     Config.shared.supportType = popBtn.indexOfSelectedItem;//选中item 的索引
     [Config.shared save];
+    
+    //开始解析json
+    if (self.inputTextView.string.length > 0) {
+        [self analysisJsonFromInputString];
+    }
 }
 
 //是否序列化设置相关点击事件
@@ -191,6 +201,12 @@
             break;
     }
     [self saveTextFieldName];
+    
+    //开始解析json
+    if (self.inputTextView.string.length > 0) {
+        [self analysisJsonFromInputString];
+    }
+    
 }
 
 //保存model自定义相关名称
@@ -265,6 +281,12 @@
 
 //直接解析左边输入框的string--> Model
 - (IBAction)btnGenerateAction:(NSButton *)sender {
+    [self analysisJsonFromInputString];
+}
+
+//从左边输入框获取数据解析
+- (void)analysisJsonFromInputString
+{
     NSString *inputStr = self.inputTextView.textStorage.string;
     JSONSerialize.shared.updateInputView = ^{
         [self updateShowText];

@@ -12,8 +12,6 @@
 #import "ConvertModel.h"
 
 
-
-
 @interface ConvertJSONToModel ()
 @end
 
@@ -33,32 +31,12 @@
 - (void)convert
 {
     if (ConvertCore.shared.isVildJson) {
-        [self start];
+        [self convertToModel];
     }
 }
 
-/**
- 注意：解析时ConvertCore.shared.jsonDict一定是至少有一对key-value的
- */
-- (void)start
-{
-    switch (Config.shared.supportType) {
-        case SupportModeTypeYYModel:{            
-            [self convertYYModel];
-        }
-            break;
-        case SupportModeTypeJSONModel:{
-            
-        }
-            break;
-        case SupportModeTypeMJExtension: {
-            
-            break;
-        }
-    }
-}
 
-- (void)convertYYModel
+- (void)convertToModel
 {
     //重置存储环境
     [ConvertResult.shared resetEnv];

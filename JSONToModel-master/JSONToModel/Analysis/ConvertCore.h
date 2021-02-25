@@ -20,8 +20,15 @@ typedef void(^BlockValue)(NSString *str);
 //转换模式对应了类型标记
 typedef NS_ENUM(NSInteger,SupportModeType){
     SupportModeTypeYYModel = 0,         //OC-YYModel
-    SupportModeTypeJSONModel = 1,       //OC-JSONModel
-    SupportModeTypeMJExtension = 2,     //OC-MJExtension
+    SupportModeTypeMJExtension,     //OC-MJExtension
+    SupportModeTypeJSONModel,       //OC-JSONModel
+};
+
+//语言类型
+typedef NS_ENUM(NSInteger, CodeType){
+    CodeTypeUnknown = 0,    //未标记
+    CodeTypeObjective,      //objective-c语言
+    CodeTypeSwift,          //swift语言
 };
 
 

@@ -12,6 +12,9 @@
 #import "SettingManager.h"
 #import "NSDictionary+JSON.h"
 
+#import "ConvertModel+YYModel.h"
+#import "ConvertModel+MJExtension.h"
+
 
 @interface ConvertModel ()
 @end
@@ -67,11 +70,10 @@
     }
     
     
-    [self generateInterface];
+    [self interface];
     
-    [self generateImplementation];
+    [self implementation];
     
-    [self saveJsonToModelPorperty];
     
 //    NSLog(@"des:\n%@",self);
 }
@@ -102,95 +104,51 @@
 {
     NSString *dicChildKey = [NSString stringWithFormat:@"%ld",index];
     if ([type isEqualToString:@"NSArray"]) {
-        if (Config.shared.supportType == SupportModeTypeYYModel) {
-            NSString *modelName = [self pascalName:key];
-            node.aryAttrType[index] = @"NSArray";
-            NSArray *ary = (NSArray *)value;
-            if (ary.count>0) {
-                id item = ary[0];
-                if ([item isKindOfClass:NSArray.class]) {//数组中的item依然是一个数组,这儿只能处理Array.Array中的item为同一种类型的数据结构
+        NSString *modelName = [self pascalName:key];
+        node.aryAttrType[index] = @"NSArray";
+        NSArray *ary = (NSArray *)value;
+        if (ary.count>0) {
+            id item = ary[0];
+            if ([item isKindOfClass:NSArray.class]) {//数组中的item依然是一个数组,这儿只能处理Array.Array中的item为同一种类型的数据结构
 //                    [node.childModelTypeAry setValue:modelName forKey:dicChildKey];
 //                    NSArray *itemAry = ary[0];
 //                    NSLog(@"NSArray tmp:%@",itemAry);
-                    
-                    //目前这儿进行提示手动添加未转化成功的属性
-                    NSLog(@"需要手动添加属性的字段:%@",key);
-                    [ConvertResult.shared.aryManualHandKey addObject:key];
-                    
-                }else if ([item isKindOfClass:NSDictionary.class]){//数组的item是Dic
-                    [node.childModelTypeAry setValue:modelName forKey:dicChildKey];
-                    
-                    item = [self maxItemWithArray:ary];
-                    
-                    //添加前后缀
-                    modelName = [NSString stringWithFormat:@"%@%@%@",Config.shared.prefixName,modelName,Config.shared.suffixName];
-                    //创建新的节点，进行递归
-                    ConvertModel *childDode = [ConvertModel new];
-                    childDode.isRoot = NO;
-                    childDode.modelName = modelName;
-                    childDode.baseModelName = Config.shared.baseChildName;
-                    childDode.rootDict = item;
-                    [childDode analysisRootDict];
-                }
+                
+                //目前这儿进行提示手动添加未转化成功的属性
+                NSLog(@"⚠️⚠️需要手动添加属性的字段:%@",key);
+                [ConvertResult.shared.aryManualHandKey addObject:key];
+                
+            }else if ([item isKindOfClass:NSDictionary.class]){//数组的item是Dic
+                [node.childModelTypeAry setValue:modelName forKey:dicChildKey];
+                item = [self maxItemWithArray:ary];
+                
+                //添加前后缀
+                modelName = [NSString stringWithFormat:@"%@%@%@",Config.shared.prefixName,modelName,Config.shared.suffixName];
+                //创建新的节点，进行递归
+                ConvertModel *childDode = [ConvertModel new];
+                childDode.isRoot = NO;
+                childDode.modelName = modelName;
+                childDode.baseModelName = Config.shared.baseChildName;
+                childDode.rootDict = item;
+                [childDode analysisRootDict];
             }
         }
-        
     }else if ([type isEqualToString:@"NSDictionary"]){
-        if (Config.shared.supportType == SupportModeTypeYYModel) {
-            NSString *modelName = [self pascalName:key];
-            [node.childModelTypeDic setValue:modelName forKey:dicChildKey];
-            node.aryAttrType[index] = modelName;
-            
-            //添加前后缀
-            modelName = [NSString stringWithFormat:@"%@%@%@",Config.shared.prefixName,modelName,Config.shared.suffixName];
-            //创建新的节点，进行递归
-            ConvertModel *childDode = [ConvertModel new];
-            childDode.isRoot = NO;
-            childDode.modelName = modelName;
-            childDode.baseModelName = Config.shared.baseChildName;
-            childDode.rootDict = value;
-            [childDode analysisRootDict];
-            
-        }
+        NSString *modelName = [self pascalName:key];
+        [node.childModelTypeDic setValue:modelName forKey:dicChildKey];
+        node.aryAttrType[index] = modelName;
+
+        //添加前后缀
+        modelName = [NSString stringWithFormat:@"%@%@%@",Config.shared.prefixName,modelName,Config.shared.suffixName];
+        //创建新的节点，进行递归
+        ConvertModel *childDode = [ConvertModel new];
+        childDode.isRoot = NO;
+        childDode.modelName = modelName;
+        childDode.baseModelName = Config.shared.baseChildName;
+        childDode.rootDict = value;
+        [childDode analysisRootDict];
     }
 }
-
-
-///**
-// 递归处理数组中嵌套数组的模式
-// ps:目前未使用，留到以后更新
-// */
-//- (void)loopArrayToArrayWithKey:(NSString *)key value:(id)value index:(NSInteger)index model:(ConvertModel *)node;
-//{
-//    NSString *dicChildKey = [NSString stringWithFormat:@"%ld",index];
-//    NSString *modelName = [self pascalName:key];
-//
-//    node.aryAttrType[index] = @"NSArray";
-//    //
-//    NSArray *ary = (NSArray *)value;
-//    if (ary.count>0) {
-//        id item = ary[0];
-//        if ([item isKindOfClass:NSArray.class]) {//数组中的item依然是一个数组,这儿只能处理Array.Array中的item为同一种类型的数据结构
-//            //这儿需要
-//            [node.childModelTypeAry setValue:modelName forKey:dicChildKey];
-//            //
-//            NSArray *itemAry = ary[0];
-//            NSLog(@"NSArray tmp:%@",itemAry);
-//
-//
-//        }else if ([item isKindOfClass:NSDictionary.class]){//数组的item是Dic
-//            [node.childModelTypeAry setValue:modelName forKey:dicChildKey];
-//            item = [self maxItemWithArray:ary];
-//            //创建新的节点，进行递归
-//            ConvertModel *childDode = [ConvertModel new];
-//            childDode.isRoot = NO;
-//            childDode.modelName = modelName;
-//            childDode.baseModelName = Config.shared.baseChildName;
-//            childDode.rootDict = item;
-//            [childDode analysisRootDict];
-//        }
-//    }
-//}
 
 /**
  获取数组中最大的item，数组的类型为NSDictionary
@@ -232,6 +190,11 @@
         NSString *upperStr = [tmpName substringWithRange:range];
         upperStr = upperStr.uppercaseString;
         [tmpName replaceCharactersInRange:range withString:upperStr];
+    }else{
+        NSRange range = NSMakeRange(0, 1);
+        NSString *upperStr = [tmpName substringWithRange:range];
+        upperStr = upperStr.uppercaseString;
+        [tmpName replaceCharactersInRange:range withString:upperStr];
     }
     return tmpName;
 }
@@ -258,42 +221,17 @@
     return type;
 }
 
-/**
- 生成属性描述字符串
- key:属性名称，对应key值
- type：属性对应的类型
- */
-- (NSString *)generateAttrStringWithKey:(NSString *)key type:(NSString *)type
-{
-    NSString *str = @"";
-    if ([type isEqualToString:@"BOOL"]) {
-        str = [NSString stringWithFormat:@"@property (nonatomic, assign) BOOL %@;\n",key];
-    }else if ([type isEqualToString:@"CGFloat"]){
-        str = [NSString stringWithFormat:@"@property (nonatomic, assign) CGFloat %@;\n",key];
-    }else if ([type isEqualToString:@"NSInteger"]) {
-        str = [NSString stringWithFormat:@"@property (nonatomic, assign) NSInteger %@;\n",key];
-    }else if ([type isEqualToString:@"NSString"]){
-        str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSString *%@;\n",key];
-    }else if ([type isEqualToString:@"NSArray"]){
-        //判断容器内的模型，进行标记
-        NSString *modelName = [self pascalName:key];
-        if ([_childModelTypeAry.allValues containsObject:modelName]) {
-            str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@;//%@ \n",key,modelName];
-        }else{
-            str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@;\n",key];
-        }
-    }else{//NSDictionary to child Model
-            str = [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *%@;\n",type,key];
-    }
-    return str;
-}
 
 #pragma mark 合成interface部分,即 .h文件部分
-- (void)generateInterface
+- (void)interface
 {
     switch (Config.shared.supportType) {
         case SupportModeTypeYYModel:{
-            [self interfaceYYModel];
+            [self generatedInterfaceYYModel];
+        }
+            break;
+        case SupportModeTypeMJExtension:{
+            [self generatedInterfaceMJExtension];
         }
             break;
             
@@ -305,178 +243,32 @@
 }
 
 #pragma mark 合成Implementation部分,即 .m文件部分
-- (void)generateImplementation
+- (void)implementation
 {
     switch (Config.shared.supportType) {
         case SupportModeTypeYYModel:{
-            [self implementationYYModel];
+            [self generatedImplementationYYModel];
+        }
+            break;
+        case SupportModeTypeMJExtension:{
+            [self generatedImplementationMJExtension];
         }
             break;
             
         default:
             break;
     }
+    
     //暂存
     [ConvertResult.shared addMString:_mString];
 }
 
-#pragma mark 保存json转换结果
-- (void)saveJsonToModelPorperty
-{
-    
-}
 
 
-- (void)interfaceYYModel
-{
-    [self customHeaderString];
-    
-    //属性编辑区域
-    for (NSInteger i=0; i<_aryAttrName.count; i++) {
-        NSString *key = _aryAttrName[i];
-        id type = _aryAttrType[i];
-        NSString *perStr = [self generateAttrStringWithKey:key type:type];
-        [_hString appendString:perStr];
-    }
-    
-    [_hString appendFormat:@"\n@end \n\n"];
-}
-
-
-- (void)implementationYYModel
-{
-    [self customImplementString];
-
-
-    [self customSerialize];
-
-    [self customPropertyMapper];
-    
-    [self customPropertyGenericClass];
-
-    [_mString appendFormat:@"@end \n\n"];
-}
-
-
-
-#pragma mark 自定义设置区域
-//自定义header提示区域
-- (void)customHeaderString
-{
-    NSString *mark = SettingManager.shared.describeString;
-    NSString *markModelName = [NSString stringWithFormat:@"%@.h",_modelName];
-    mark = [mark stringByReplacingOccurrencesOfString:@"ModelName" withString:markModelName];
-    NSMutableArray *aryCustomModel = @[].mutableCopy;
-    [aryCustomModel addObjectsFromArray:_childModelTypeDic.allValues];
-    [aryCustomModel addObjectsFromArray:_childModelTypeAry.allValues];
-    [ConvertResult.shared.aryCustomModelNames addObjectsFromArray:aryCustomModel];
-    if (Config.shared.isMultipleFile) {
-        [_hString appendString:mark];
-        [_hString appendString:@"#import <UIKit/UIKit.h>\n"];
-        for (NSString *h in aryCustomModel) {
-            [_hString appendFormat:@"#import \"%@.h\"\n",h];
-        }
-        [_hString appendString:@"\n\n"];
-    }else{
-        if (_isRoot) {
-           [_hString appendString:mark];
-            [_hString appendString:@"#import <UIKit/UIKit.h>\n\n"];
-            
-            if (ConvertResult.shared.aryCustomModelNames.count>0) {
-                NSMutableString *exClass = [[NSMutableString alloc] initWithString:@"@class "];
-                NSInteger i = 0;
-                for (NSString *n in ConvertResult.shared.aryCustomModelNames) {
-                    if (i==ConvertResult.shared.aryCustomModelNames.count-1) {
-                        [exClass appendFormat:@"%@;",n];
-                    }else{
-                        [exClass appendFormat:@"%@,",n];
-                    }
-                    i++;
-                }
-                [_hString appendFormat:@"\n%@\n",exClass];
-            }
-        }
-    }
-    
-    [_hString appendFormat:@"@interface %@ : %@\n\n",_modelName,_baseModelName];
-
-}
-
-- (void)customImplementString
-{
-    NSString *mark = SettingManager.shared.describeString;
-    NSString *markModelName = [NSString stringWithFormat:@"%@.m",_modelName];
-    mark = [mark stringByReplacingOccurrencesOfString:@"ModelName" withString:markModelName];
-    if (Config.shared.isMultipleFile) {
-        [_mString appendString:mark];
-        [_mString appendFormat:@"#import \"%@.h\" \n\n",_modelName];
-    }else{
-        if (_isRoot) {
-           [_mString appendString:mark];
-            [_mString appendFormat:@"#import \"%@.h\" \n\n",_modelName];
-
-        }
-    }
-    [_mString appendFormat:@"@implementation %@ \n\n",_modelName];
-}
-
-//处理序列化设置
-- (void)customSerialize
-{
-    if (Config.shared.isSerialize) {
-        SupportModeType type = Config.shared.supportType;
-        switch (type) {
-            case SupportModeTypeYYModel:{
-                [_mString appendFormat:@"%@\n",[SettingManager.shared getSerializeCofingWith:Config.shared.supportType]];
-            }
-                break;
-                
-            default:
-                break;
-        }
-    }
-}
-
-//处理映射如字段 default， switch等关键字作为字段
-- (void)customPropertyMapper
-{
-    if (_mappingPorpertys.allKeys.count>0) {
-        SupportModeType type = Config.shared.supportType;
-        switch (type) {
-            case SupportModeTypeYYModel:{
-                NSString *dicStr = [_mappingPorpertys toPorpertyString];
-                NSString *mappingStr = [SettingManager.shared getModelCustomPropertyMapperWithType:type];
-                mappingStr = [mappingStr stringByReplacingOccurrencesOfString:@"[dicString]" withString:dicStr];
-                [_mString appendFormat:@"%@\n",mappingStr];
-            }
-                break;
-                
-            default:
-                break;
-        }
-    }
-}
-
-//处理属性对应类型申明
-- (void)customPropertyGenericClass
-{
-    if (_childModelTypeAry.allKeys.count>0) {
-        SupportModeType type = Config.shared.supportType;
-        switch (type) {
-            case SupportModeTypeYYModel:{
-                NSString *dicStr = [self toGenericClassString];
-                NSString *mappingStr = [SettingManager.shared getModelCustomPropertyGenericClassWithType:type];
-                mappingStr = [mappingStr stringByReplacingOccurrencesOfString:@"[dicString]" withString:dicStr];
-                [_mString appendFormat:@"%@\n",mappingStr];
-            }
-                break;
-                
-            default:
-                break;
-        }
-    }
-}
-
+/**
+ 返回需要对自定义属性申明类型的字符串
+ return @{@"key":Type.class};
+ */
 - (NSString *)toGenericClassString
 {
     NSMutableString *classStr = [[NSMutableString alloc] init];

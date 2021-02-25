@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *showStr;//被显示在输入框中的字符串
 
 @property (nonatomic, copy) Block updateInputView;//回调-更新输入
-//@property (nonatomic, copy) Block updateOutputView;//回调-更新输出
 
 + (instancetype)shared;
 

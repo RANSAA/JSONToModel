@@ -1,23 +1,22 @@
 //
-//  ConvertModel+YYModel.m
+//  ConvertModel+MJExtension.m
 //  JSONToModel
 //
 //  Created by PC on 2021/2/25.
 //  Copyright © 2021 hl.com.cn. All rights reserved.
 //
 
-#import "ConvertModel+YYModel.h"
+#import "ConvertModel+MJExtension.h"
 #import "SettingManager.h"
 #import "ConvertResult.h"
 #import "Config.h"
 #import "NSDictionary+JSON.h"
 
-
-@implementation ConvertModel (YYModel)
+@implementation ConvertModel (MJExtension)
 
 
 #pragma mark @interface部分
-- (void)generatedInterfaceYYModel
+- (void)generatedInterfaceMJExtension
 {
     [self customHeaderString];
     
@@ -106,15 +105,14 @@
 }
 
 
-
 #pragma mark @implementation部分
-- (void)generatedImplementationYYModel
+- (void)generatedImplementationMJExtension
 {
     [self customImplementString];
     [self customSerialize];
     [self customPropertyMapper];
     [self customPropertyGenericClass];
-    
+
     [self.mString appendFormat:@"@end \n\n"];
 }
 

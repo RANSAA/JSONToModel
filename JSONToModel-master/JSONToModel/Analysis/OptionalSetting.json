@@ -33,10 +33,10 @@
       "- (NSString *)description { return [self yy_modelDescription]; }"
     ],
     "OC-JSONModel": [
-      "test"
+      "OC-JSONModel序列化测试"
     ],
     "OC-MJExtension": [
-      "tets222"
+      "OC-MJExtension序列化ces"
     ]
   }
 ,

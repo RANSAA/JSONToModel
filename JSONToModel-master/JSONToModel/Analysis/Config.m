@@ -42,6 +42,18 @@
     self.isMultipleFile = NO;
 }
 
+- (CodeType)codeType
+{
+    CodeType type = CodeTypeUnknown;
+    NSString *code = self.supportMode.uppercaseString;
+    if ([self.supportMode containsString:@"OC"]) {
+        type = CodeTypeObjective;
+    }else if ([self.supportMode containsString:@"SWIFT"]){
+        type = CodeTypeSwift;
+    }
+    return type;
+}
+
 - (void)setRootName:(NSString *)rootName
 {
     if (rootName.length<1) {

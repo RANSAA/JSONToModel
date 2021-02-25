@@ -13,6 +13,7 @@
 		3F07FD5125E64E660011EAE3 /* OptionalSetting.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F07FD5025E64E660011EAE3 /* OptionalSetting.json */; };
 		3F07FD5425E6525F0011EAE3 /* SettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07FD5325E6525F0011EAE3 /* SettingManager.m */; };
 		3F07FD5725E65C420011EAE3 /* ConvertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07FD5625E65C420011EAE3 /* ConvertModel.m */; };
+		3F93652025E7EB9F002A8B21 /* ConvertModel+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F93651F25E7EB9F002A8B21 /* ConvertModel+MJExtension.m */; };
 		3FD86E4C25E7B8F8008D1A5C /* ConvertModel+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD86E4B25E7B8F8008D1A5C /* ConvertModel+YYModel.m */; };
 		3FDF6C7C25E391E400286896 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF6C7B25E391E400286896 /* Config.m */; };
 		3FDF6C7F25E3A0AD00286896 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF6C7E25E3A0AD00286896 /* ShowViewController.m */; };
@@ -48,6 +49,8 @@
 		3F07FD5325E6525F0011EAE3 /* SettingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingManager.m; sourceTree = "<group>"; };
 		3F07FD5525E65C420011EAE3 /* ConvertModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertModel.h; sourceTree = "<group>"; };
 		3F07FD5625E65C420011EAE3 /* ConvertModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertModel.m; sourceTree = "<group>"; };
+		3F93651E25E7EB9F002A8B21 /* ConvertModel+MJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ConvertModel+MJExtension.h"; sourceTree = "<group>"; };
+		3F93651F25E7EB9F002A8B21 /* ConvertModel+MJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ConvertModel+MJExtension.m"; sourceTree = "<group>"; };
 		3FD86E4A25E7B8F8008D1A5C /* ConvertModel+YYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ConvertModel+YYModel.h"; sourceTree = "<group>"; };
 		3FD86E4B25E7B8F8008D1A5C /* ConvertModel+YYModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ConvertModel+YYModel.m"; sourceTree = "<group>"; };
 		3FDF6C7A25E391E400286896 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 				3F07FD5625E65C420011EAE3 /* ConvertModel.m */,
 				3FD86E4A25E7B8F8008D1A5C /* ConvertModel+YYModel.h */,
 				3FD86E4B25E7B8F8008D1A5C /* ConvertModel+YYModel.m */,
+				3F93651E25E7EB9F002A8B21 /* ConvertModel+MJExtension.h */,
+				3F93651F25E7EB9F002A8B21 /* ConvertModel+MJExtension.m */,
 				3F0637C925E546F80059697E /* ConvertResult.h */,
 				3F0637CA25E546F80059697E /* ConvertResult.m */,
 				3FDF6C8025E3A9BD00286896 /* JSONSerialize.h */,
@@ -354,6 +359,7 @@
 			files = (
 				3F07FD5425E6525F0011EAE3 /* SettingManager.m in Sources */,
 				3FDF9F1F25E2AB1400FFF3DE /* AttributeConfig.m in Sources */,
+				3F93652025E7EB9F002A8B21 /* ConvertModel+MJExtension.m in Sources */,
 				3F0637CB25E546F80059697E /* ConvertResult.m in Sources */,
 				4E2CAF9520591F9C002B6E59 /* main.m in Sources */,
 				3F07FD5725E65C420011EAE3 /* ConvertModel.m in Sources */,

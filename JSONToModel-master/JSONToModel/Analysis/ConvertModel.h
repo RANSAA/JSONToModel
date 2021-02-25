@@ -33,6 +33,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 //开始解析rootDict
 - (void)analysisRootDict;
+
+
+//帕斯卡命名
+- (NSString *)pascalName:(NSString *)name;
+//检查关键字属性是否需要映射
+- (void)checkPorpertyMapping;
+/**
+ 返回需要对自定义属性申明类型的字符串
+ return @{@"key":Type.class};
+ */
+- (NSString *)toGenericClassString;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) BOOL isCompareKey;//是否对生成的model属性进行排序，默认YES
 @property(nonatomic, copy)   NSString *supportMode;//模式name
 @property(nonatomic, assign) SupportModeType supportType;//模式类型标号
+@property(nonatomic, assign) CodeType codeType;//解析语言
 
 @property(nonatomic, copy) NSString *rootName;//根model名称
 @property(nonatomic, copy) NSString *prefixName;//前缀名称
