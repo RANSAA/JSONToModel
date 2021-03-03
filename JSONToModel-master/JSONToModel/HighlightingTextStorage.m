@@ -90,7 +90,7 @@ static NSString *const kEmotionPattern = @"\\[\\w+\\]"; // "[]"表情
 #pragma mark - Syntax highlighting
 - (void)performReplacementsForRange:(NSRange)changedRange {
     //默认是黑色--这里设置白色-Menlo字体
-    NSLog(@"foregroundColor=%@",self.foregroundColor);
+//    NSLog(@"foregroundColor=%@",self.foregroundColor);
     if (self.defaultTextColor) {
         NSDictionary *atts=@{NSFontAttributeName :[NSFont fontWithName:@"Menlo" size:14],NSForegroundColorAttributeName:self.defaultTextColor};
         [self addAttributes:atts range:changedRange];
@@ -146,7 +146,7 @@ static NSString *const kEmotionPattern = @"\\[\\w+\\]"; // "[]"表情
 //    NSString  *command= [NSString stringWithFormat:@"window.hljs.highlightAuto(\"%@\").value;",escapeContent(content)];
     NSString  *command = [NSString stringWithFormat:@"window.hljs.highlight(\"%@\",\"%@\").value;",@"objectivec",escapeContent(content)];
     NSString *highlightString = [[self.context evaluateScript:command] toString];
-    NSLog(@"highlight:\n %@",highlightString);
+//    NSLog(@"highlight:\n %@",highlightString);
     [self renderContent:highlightString withRange:paragaphRange];
 }
 
@@ -164,7 +164,7 @@ static NSDictionary * kThemeInfo() {
         NSData *jdata = [[NSData alloc] initWithContentsOfFile:filePath];
         // 格式化成json数据
         NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:jdata options:kNilOptions error:&error];
-        NSLog(@"jsonObject=%@",jsonObject);
+//        NSLog(@"jsonObject=%@",jsonObject);
         _themeInfo=jsonObject;
     });
     return _themeInfo;
@@ -177,7 +177,7 @@ static NSDictionary * kThemeInfo() {
     JSContext *context=[[JSContext alloc]init];
     [context evaluateScript:@"var window = {};"];
      context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
-        NSLog(@"# JS Exception: %@", exception);
+//        NSLog(@"# JS Exception: %@", exception);
         context.exception = exception;
     };
     self.context=context;

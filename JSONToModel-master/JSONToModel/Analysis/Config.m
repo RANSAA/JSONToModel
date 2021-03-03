@@ -35,20 +35,22 @@
     
     self.supportMode    = ConvertCore.shared.allSupportMode[0];
     self.supportType    = SupportModeTypeYYModel;
+    self.duplicateType  = DuplicateModeStandard;
     
     self.isSerialize = YES;
     self.isPascal = YES;
     self.isPreSuffixRootModel = NO;
     self.isMultipleFile = NO;
+    self.isHump = NO;
 }
 
 - (CodeType)codeType
 {
     CodeType type = CodeTypeUnknown;
     NSString *code = self.supportMode.uppercaseString;
-    if ([self.supportMode containsString:@"OC"]) {
+    if ([code containsString:@"OC"]) {
         type = CodeTypeObjective;
-    }else if ([self.supportMode containsString:@"SWIFT"]){
+    }else if ([code containsString:@"SWIFT"]){
         type = CodeTypeSwift;
     }
     return type;

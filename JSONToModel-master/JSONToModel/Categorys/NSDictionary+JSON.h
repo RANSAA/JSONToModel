@@ -39,7 +39,11 @@
  */
 - (NSString *)toPorpertyString;
 
+//返回有序的allKeys
+- (NSArray *)allSortedKeys;
 
+//返回有序的allValues,value排序是以allSortedKeys为标准
+- (NSArray *)allSortedValues;
 
 
 @end

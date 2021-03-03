@@ -20,7 +20,7 @@
   "AnalyticModel": {
     "0": "OC-YYModel",
     "1": "OC-MJExtension",
-    "2": "OC-JSONModel"
+    "3": "Swift-KakaJSON"
   },
   "SerializeConfig": {
     "OC-YYModel": [
@@ -32,23 +32,29 @@
       "- (BOOL)isEqual:(id)object { return [self yy_modelIsEqual:object]; }",
       "- (NSString *)description { return [self yy_modelDescription]; }"
     ],
-    "OC-JSONModel": [
-      "OC-JSONModel序列化测试"
-    ],
     "OC-MJExtension": [
-      "OC-MJExtension序列化ces"
+      "//MJExtension Coding",
+      "MJExtensionCodingImplementation"
     ]
   }
 ,
   "CustomPropertyMapper": {
     "OC-YYModel": [
-      "//返回一个 Dict，将 Model 属性名对映射到 JSON 的 Key。\n+ (NSDictionary *)modelCustomPropertyMapper {\n    return [dicString];\n}"
+      "//返回一个 Dict，将 Model 属/Users/D/Remote/JSONToModel/JSONToModel-master/JSONToModel/Analysis/ConvertModel.m性名对映射到 JSON 的 Key。\n+ (NSDictionary *)modelCustomPropertyMapper {\n    return [dicString];\n}"
+    ]
+  ,
+    "OC-MJExtension": [
+      "//返回一个 Dict，将 Model 属性名对映射到 JSON 的 Key。\n+ (NSDictionary *)mj_replacedKeyFromPropertyName\n{\n    return [dicString];\n}"
     ]
   }
 ,
   "CustomPropertyGenericClass": {
     "OC-YYModel": [
       "//返回容器类中的所需要存放的数据类型 (以 Class 或 Class Name 的形式)。\n+ (NSDictionary *)modelContainerPropertyGenericClass {\n    return [dicString];\n}"
+    ]
+  ,
+    "OC-MJExtension": [
+      "//返回容器类中的所需要存放的数据类型 (以 Class 或 Class Name 的形式)。\n+ (NSDictionary *)mj_objectClassInArray\n{\n    return [dicString];\n}"
     ]
   }
 }

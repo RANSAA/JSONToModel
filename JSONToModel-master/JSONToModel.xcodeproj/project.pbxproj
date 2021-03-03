@@ -359,12 +359,12 @@
 			files = (
 				3F07FD5425E6525F0011EAE3 /* SettingManager.m in Sources */,
 				3FDF9F1F25E2AB1400FFF3DE /* AttributeConfig.m in Sources */,
-				3F93652025E7EB9F002A8B21 /* ConvertModel+MJExtension.m in Sources */,
 				3F0637CB25E546F80059697E /* ConvertResult.m in Sources */,
 				4E2CAF9520591F9C002B6E59 /* main.m in Sources */,
 				3F07FD5725E65C420011EAE3 /* ConvertModel.m in Sources */,
 				3F0637C125E4D0C10059697E /* ConvertJSONToModel.m in Sources */,
 				3FD86E4C25E7B8F8008D1A5C /* ConvertModel+YYModel.m in Sources */,
+				3F93652025E7EB9F002A8B21 /* ConvertModel+MJExtension.m in Sources */,
 				3FDF6C7F25E3A0AD00286896 /* ShowViewController.m in Sources */,
 				3F0637C425E4D9050059697E /* ConvertCore.m in Sources */,
 				4EC88E432059279D00D75C15 /* LineNumberRulerView.swift in Sources */,

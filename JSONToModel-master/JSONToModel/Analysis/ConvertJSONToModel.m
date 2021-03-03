@@ -41,6 +41,9 @@
     //重置存储环境
     [ConvertResult.shared resetEnv];
     
+    
+    [ConvertResult.shared setConvertIndex:0];
+    
     //解析json
     NSString *rootName = Config.shared.rootName;
     if (Config.shared.isPreSuffixRootModel) {
@@ -63,6 +66,8 @@
     if (self.completed) {
         self.completed([ConvertResult.shared getShowString]);
     }
+    
+
 }
 
 @end

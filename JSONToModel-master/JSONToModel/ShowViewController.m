@@ -77,12 +77,19 @@
 {
     //Pattern
     [self.itemBtnPattern removeAllItems];
-    for (NSString *mode in ConvertCore.shared.allSupportMode) {
-        [self.itemBtnPattern addItemWithTitle:mode];
-    }
+    [self.itemBtnPattern addItemsWithTitles:ConvertCore.shared.allSupportMode];
     [self.itemBtnPattern setTarget:self];
     [self.itemBtnPattern setAction:@selector(handlePatternAction:)];
     [self.itemBtnPattern selectItemWithTitle:Config.shared.supportMode];
+    
+    
+    //Model JSON
+    [self.popBtnModel removeAllItems];
+    [self.popBtnModel addItemsWithTitles:ConvertCore.shared.allDuplicateMode];
+    [self.popBtnModel setTarget:self];
+    [self.popBtnModel setAction:@selector(handleModelAction:)];
+    [self.popBtnModel selectItemAtIndex:Config.shared.duplicateType];
+    
     
     //btn
     self.btnSerialize.tag = 20;
@@ -101,6 +108,16 @@
     self.btnMultipleFile.state = Config.shared.isMultipleFile;
     [self.btnMultipleFile setTarget:self];
     [self.btnMultipleFile setAction:@selector(btnClickAction:)];
+    
+//    self.btnMinModel.tag = 24;
+//    [self.btnMinModel setTarget:self];
+//    [self.btnMinModel setAction:@selector(btnClickAction:)];
+    
+    self.btnHump.tag = 25;
+    self.btnHump.state = Config.shared.isHump;
+    [self.btnHump setTarget:self];
+    [self.btnHump setAction:@selector(btnClickAction:)];
+
     
     //输入框
     if (Config.shared.rootName) {
@@ -166,6 +183,19 @@
     }
 }
 
+//model选择action
+- (void)handleModelAction:(NSPopUpButton *)popBtn
+{
+    Config.shared.duplicateType = popBtn.indexOfSelectedItem;
+    [Config.shared save];
+    
+    //开始解析json
+    if (self.inputTextView.string.length > 0) {
+        [self analysisJsonFromInputString];
+    }
+}
+
+
 //是否序列化设置相关点击事件
 - (void)btnClickAction:(NSButton *)btn
 {
@@ -197,9 +227,19 @@
             [Config.shared save];
         }
             break;
+        case 24:{
+
+        }
+            break;
+        case 25:{//属性是否驼峰命名
+            Config.shared.isHump = state;
+            [Config.shared save];
+        }
+            break;
         default:
             break;
     }
+    
     [self saveTextFieldName];
     
     //开始解析json

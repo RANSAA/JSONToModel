@@ -15,12 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ConvertResult : NSObject
 
 @property(nonatomic, strong) NSMutableArray *aryManualHandKey;//记录需要进行手动转换的字段
-@property(nonatomic, strong) NSMutableArray *aryCustomModelNames;//记录所有生成model(RootModel除外)的名称
+@property(nonatomic, strong, readonly) NSMutableSet *curImportClassAry;//存储当前所有自定义model name
 
 + (instancetype)shared;
 
 /** 重置存储环境 */
 - (void)resetEnv;
+
+/** 设置当前最外层是第几次循环解析 */
+- (void)setConvertIndex:(NSInteger)index;
 
 /**
  添加.h部分进行暂存
@@ -30,9 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addHString:(NSString *)hStr name:(NSString *)modelName;
 
 /**
- 添加.m部分进行暂存
+ 添加.m部分进行暂存,该部分是可选的
  mStr:
- modelName:对应模型名称
  */
 - (void)addMString:(NSString *)mStr;
 
@@ -47,6 +49,33 @@ NS_ASSUME_NONNULL_BEGIN
 /** 保存文件*/
 - (void)saveAs;
 
+
+
+
+
+
+#pragma mark 处理查询书否有相同的json字段并且具有相同属性结构
+/**
+ 添加对应的模型名称与原始dic
+ */
+- (void)addModelName:(NSString *)modelName rootDic:(NSDictionary *)rootDict;
+/**
+ 根据json节点数据查询对应的modelName
+ */
+- (nullable NSString *)quearyModelNameWithNode:(NSDictionary *)nodeDic;
+
+/** 检查该json节点是否有，父亲json结构解析集合存在*/
+- (BOOL)isSubsetOfJsonNode:(NSDictionary *)nodeDic;
+
+/** 检查该json节点是否有，相同json结构解析集合存在*/
+- (BOOL)isMemberToJsonNode:(NSDictionary *)nodeDic;
+
+
 @end
+
+
+
+
+
 
 NS_ASSUME_NONNULL_END

@@ -19,54 +19,44 @@
 #pragma mark @interface部分
 - (void)generatedInterfaceYYModel
 {
-    [self customHeaderString];
+    [self yy_customHeaderString];
     
-    //属性编辑区域
-    for (NSInteger i=0; i<self.aryAttrName.count; i++) {
-        NSString *key = self.aryAttrName[i];
-        id type = self.aryAttrType[i];
-        NSString *perStr = [self generateAttrStringWithKey:key type:type];
-        [self.hString appendString:perStr];
-    }
+    [self yy_editArea];
     
     [self.hString appendFormat:@"\n@end \n\n"];
 }
 
+//属性编辑区域
+- (void)yy_editArea
+{
+    for (NSInteger i=0; i<self.aryAttrName.count; i++) {
+        NSString *key = self.aryAttrName[i];
+        id type = self.aryAttrType[i];
+        NSString *perStr = [self yy_generateAttrStringWithKey:key type:type index:i];
+        [self.hString appendString:perStr];
+    }
+}
+
 //自定义header提示区域
-- (void)customHeaderString
+- (void)yy_customHeaderString
 {
     NSString *mark = SettingManager.shared.describeString;
-    NSString *markModelName = [NSString stringWithFormat:@"%@.h",self.modelName];
+    NSString *markModelName = [NSString stringWithFormat:@"%@.%@",self.modelName,[ConvertCore.shared hPartSuffix]];
     mark = [mark stringByReplacingOccurrencesOfString:@"ModelName" withString:markModelName];
-    NSMutableArray *aryCustomModel = @[].mutableCopy;
-    [aryCustomModel addObjectsFromArray:self.childModelTypeDic.allValues];
-    [aryCustomModel addObjectsFromArray:self.childModelTypeAry.allValues];
-    //
-    [ConvertResult.shared.aryCustomModelNames addObjectsFromArray:aryCustomModel];
     if (Config.shared.isMultipleFile) {
         [self.hString appendString:mark];
         [self.hString appendString:@"#import <UIKit/UIKit.h>\n"];
-        for (NSString *h in aryCustomModel) {
-            [self.hString appendFormat:@"#import \"%@.h\"\n",h];
+        for (NSString *h in self.importClassSet) {
+            [self.hString appendFormat:@"#import \"%@.%@\"\n",h,[ConvertCore.shared hPartSuffix]];
         }
         [self.hString appendString:@"\n\n"];
     }else{
         if (self.isRoot) {
             [self.hString appendString:mark];
-            [self.hString appendString:@"#import <UIKit/UIKit.h>\n\n"];
+            [self.hString appendString:@"#import <UIKit/UIKit.h>\n\n\n"];
             
-            if (ConvertResult.shared.aryCustomModelNames.count>0) {
-                NSMutableString *exClass = [[NSMutableString alloc] initWithString:@"@class "];
-                NSInteger i = 0;
-                for (NSString *n in ConvertResult.shared.aryCustomModelNames) {
-                    if (i==ConvertResult.shared.aryCustomModelNames.count-1) {
-                        [exClass appendFormat:@"%@;",n];
-                    }else{
-                        [exClass appendFormat:@"%@,",n];
-                    }
-                    i++;
-                }
-                [self.hString appendFormat:@"\n%@\n",exClass];
+            for (NSString *n in ConvertResult.shared.curImportClassAry) {
+                [self.hString appendFormat:@"@class %@;\n",n];
             }
         }
     }
@@ -79,22 +69,24 @@
  生成属性描述字符串
  key:属性名称，对应key值
  type：属性对应的类型
+ index:当前属性的位置
  */
-- (NSString *)generateAttrStringWithKey:(NSString *)key type:(NSString *)type
+- (NSString *)yy_generateAttrStringWithKey:(NSString *)key type:(NSString *)type index:(NSInteger)index
 {
     NSString *str = @"";
-    if ([type isEqualToString:@"BOOL"]) {
+    if ([type isEqualToString:kBool]) {
         str = [NSString stringWithFormat:@"@property (nonatomic, assign) BOOL %@;\n",key];
-    }else if ([type isEqualToString:@"CGFloat"]){
+    }else if ([type isEqualToString:kFloat]){
         str = [NSString stringWithFormat:@"@property (nonatomic, assign) CGFloat %@;\n",key];
-    }else if ([type isEqualToString:@"NSInteger"]) {
+    }else if ([type isEqualToString:kInt]) {
         str = [NSString stringWithFormat:@"@property (nonatomic, assign) NSInteger %@;\n",key];
-    }else if ([type isEqualToString:@"NSString"]){
+    }else if ([type isEqualToString:kString]){
         str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSString *%@;\n",key];
-    }else if ([type isEqualToString:@"NSArray"]){
+    }else if ([type isEqualToString:kAry]){
         //判断容器内的模型，进行标记
-        NSString *modelName = [self pascalName:key];
-        if ([self.childModelTypeAry.allValues containsObject:modelName]) {
+        NSString *row = [NSString stringWithFormat:@"%ld",index];
+        if ([self.childModelTypeAry.allKeys containsObject:row]) {
+            NSString *modelName = self.childModelTypeAry[row];
             str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@;//%@ \n",key,modelName];
         }else{
             str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@;\n",key];
@@ -110,35 +102,33 @@
 #pragma mark @implementation部分
 - (void)generatedImplementationYYModel
 {
-    [self customImplementString];
-    [self customSerialize];
-    [self customPropertyMapper];
-    [self customPropertyGenericClass];
+    [self yy_customImplementString];
+    [self yy_customSerialize];
+    [self yy_customPropertyMapper];
+    [self yy_customPropertyGenericClass];
     
     [self.mString appendFormat:@"@end \n\n"];
 }
 
 //.m文件头部自定义
-- (void)customImplementString
+- (void)yy_customImplementString
 {
     NSString *mark = SettingManager.shared.describeString;
-    NSString *markModelName = [NSString stringWithFormat:@"%@.m",self.modelName];
+    NSString *markModelName = [NSString stringWithFormat:@"%@.%@",self.modelName,[ConvertCore.shared mPartSuffix]];
     mark = [mark stringByReplacingOccurrencesOfString:@"ModelName" withString:markModelName];
-    if (Config.shared.isMultipleFile) {
+    BOOL isImport = NO;
+    if (Config.shared.isMultipleFile || self.isRoot) {
+        isImport = YES;
+    }
+    if (isImport) {
         [self.mString appendString:mark];
-        [self.mString appendFormat:@"#import \"%@.h\" \n\n",self.modelName];
-    }else{
-        if (self.isRoot) {
-            [self.mString appendString:mark];
-            [self.mString appendFormat:@"#import \"%@.h\" \n\n",self.modelName];
-
-        }
+        [self.mString appendFormat:@"#import \"%@.%@\" \n\n",self.modelName,[ConvertCore.shared hPartSuffix]];
     }
     [self.mString appendFormat:@"@implementation %@ \n\n",self.modelName];
 }
 
 //如果模板支持序列化，在此定制
-- (void)customSerialize
+- (void)yy_customSerialize
 {
     if (Config.shared.isSerialize) {
         [self.mString appendFormat:@"%@\n",[SettingManager.shared getSerializeCofingWith:Config.shared.supportType]];
@@ -146,7 +136,7 @@
 }
 
 //处理被重命名过的字段属性的映射说明
-- (void)customPropertyMapper
+- (void)yy_customPropertyMapper
 {
     if (self.mappingPorpertys.allKeys.count>0) {
         SupportModeType type = Config.shared.supportType;
@@ -158,7 +148,7 @@
 }
 
 //处理属性对应类型申明
-- (void)customPropertyGenericClass
+- (void)yy_customPropertyGenericClass
 {
     if (self.childModelTypeAry.allKeys.count>0) {
         SupportModeType type = Config.shared.supportType;

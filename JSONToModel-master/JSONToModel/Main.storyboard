@@ -991,30 +991,59 @@
                                                             </menu>
                                                         </popUpButtonCell>
                                                     </popUpButton>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6QG-1r-Bt7">
+                                                        <rect key="frame" x="135" y="7" width="46" height="16"/>
+                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Model:" id="wmP-4c-it5">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wfw-lz-UaD">
+                                                        <rect key="frame" x="185" y="2" width="77" height="25"/>
+                                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="xPd-FQ-vud" id="0sv-Xt-6vv">
+                                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                            <menu key="menu" id="Cgy-Tc-aAN">
+                                                                <items>
+                                                                    <menuItem title="Item 1" state="on" id="xPd-FQ-vud"/>
+                                                                    <menuItem title="Item 2" id="l3h-WU-kPv"/>
+                                                                    <menuItem title="Item 3" id="S7d-x3-dIk"/>
+                                                                </items>
+                                                            </menu>
+                                                        </popUpButtonCell>
+                                                    </popUpButton>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uyS-DD-auZ">
-                                                        <rect key="frame" x="171" y="6" width="62" height="18"/>
+                                                        <rect key="frame" x="289" y="6" width="62" height="18"/>
                                                         <buttonCell key="cell" type="check" title="序列化" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="oMX-Ux-uJ6">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UtC-hZ-bxE">
-                                                        <rect key="frame" x="249" y="6" width="89" height="18"/>
-                                                        <buttonCell key="cell" type="check" title="帕斯卡命名" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="hXy-RK-mrA">
+                                                        <rect key="frame" x="367" y="6" width="131" height="18"/>
+                                                        <buttonCell key="cell" type="check" title="Model Pascal命名" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="hXy-RK-mrA">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JcF-Mb-iUe">
+                                                        <rect key="frame" x="514" y="6" width="115" height="18"/>
+                                                        <buttonCell key="cell" type="check" title="属性Hump命名" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Rel-R5-aVa">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kwI-ar-0KL">
-                                                        <rect key="frame" x="354" y="6" width="156" height="18"/>
+                                                        <rect key="frame" x="645" y="6" width="156" height="18"/>
                                                         <buttonCell key="cell" type="check" title="RootModel添加前后缀" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BGA-Vn-8Ym">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WCI-To-u8d">
-                                                        <rect key="frame" x="526" y="6" width="102" height="18"/>
-                                                        <buttonCell key="cell" type="check" title="生成多个文件" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Yuz-VO-Nin">
+                                                        <rect key="frame" x="817" y="6" width="89" height="18"/>
+                                                        <buttonCell key="cell" type="check" title="多个源文件" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Yuz-VO-Nin">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
@@ -1022,14 +1051,20 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="uyS-DD-auZ" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="36r-jI-LHB"/>
+                                                    <constraint firstItem="Wfw-lz-UaD" firstAttribute="leading" secondItem="6QG-1r-Bt7" secondAttribute="trailing" constant="8" id="8Di-en-jsN"/>
                                                     <constraint firstItem="Edm-AN-99r" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="8w0-Nn-cbZ"/>
-                                                    <constraint firstItem="uyS-DD-auZ" firstAttribute="leading" secondItem="Edm-AN-99r" secondAttribute="trailing" constant="48" id="9Fh-ct-Wi0"/>
                                                     <constraint firstItem="ukU-p2-7LW" firstAttribute="leading" secondItem="BSc-ax-b8O" secondAttribute="leading" constant="8" id="AR7-sn-Pp4"/>
+                                                    <constraint firstItem="JcF-Mb-iUe" firstAttribute="leading" secondItem="UtC-hZ-bxE" secondAttribute="trailing" constant="20" id="D7N-Z9-0rg"/>
+                                                    <constraint firstItem="6QG-1r-Bt7" firstAttribute="leading" secondItem="Edm-AN-99r" secondAttribute="trailing" constant="12" id="EnE-Th-cpE"/>
                                                     <constraint firstItem="ukU-p2-7LW" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="Ns2-Eg-jfW"/>
+                                                    <constraint firstItem="Wfw-lz-UaD" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="RTZ-Nv-7oU"/>
                                                     <constraint firstItem="UtC-hZ-bxE" firstAttribute="leading" secondItem="uyS-DD-auZ" secondAttribute="trailing" constant="20" id="Wrv-eS-8h4"/>
-                                                    <constraint firstItem="kwI-ar-0KL" firstAttribute="leading" secondItem="UtC-hZ-bxE" secondAttribute="trailing" constant="20" id="c4o-Hs-odK"/>
                                                     <constraint firstItem="WCI-To-u8d" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="ghT-Kn-CRz"/>
-                                                    <constraint firstItem="WCI-To-u8d" firstAttribute="leading" secondItem="kwI-ar-0KL" secondAttribute="trailing" constant="20" id="mI1-Af-RFn"/>
+                                                    <constraint firstItem="WCI-To-u8d" firstAttribute="leading" secondItem="kwI-ar-0KL" secondAttribute="trailing" constant="20" id="ize-Ft-P8h"/>
+                                                    <constraint firstItem="kwI-ar-0KL" firstAttribute="leading" secondItem="JcF-Mb-iUe" secondAttribute="trailing" constant="20" id="ko7-CC-fXO"/>
+                                                    <constraint firstItem="6QG-1r-Bt7" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="olz-We-AZ9"/>
+                                                    <constraint firstItem="JcF-Mb-iUe" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="qci-XJ-1Ih"/>
+                                                    <constraint firstItem="uyS-DD-auZ" firstAttribute="leading" secondItem="Wfw-lz-UaD" secondAttribute="trailing" constant="32" id="rlQ-e8-fMc"/>
                                                     <constraint firstItem="Edm-AN-99r" firstAttribute="leading" secondItem="ukU-p2-7LW" secondAttribute="trailing" constant="8" id="sfy-Ec-CWI"/>
                                                     <constraint firstItem="kwI-ar-0KL" firstAttribute="centerY" secondItem="BSc-ax-b8O" secondAttribute="centerY" id="t3E-RB-99U"/>
                                                 </constraints>
@@ -1219,7 +1254,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G2g-Mt-2Q5">
-                                            <rect key="frame" x="934" y="1" width="110" height="32"/>
+                                            <rect key="frame" x="477" y="1" width="110" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="98" id="aOk-SZ-mPy"/>
                                             </constraints>
@@ -1232,7 +1267,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SXl-CT-vMG">
-                                            <rect key="frame" x="1112" y="1" width="110" height="32"/>
+                                            <rect key="frame" x="639" y="1" width="110" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="98" id="Ygw-dn-Ts7"/>
                                             </constraints>
@@ -1261,10 +1296,9 @@
                                     <constraints>
                                         <constraint firstItem="SXl-CT-vMG" firstAttribute="centerY" secondItem="VAz-oX-JjE" secondAttribute="centerY" id="2hC-GC-1ze"/>
                                         <constraint firstItem="G2g-Mt-2Q5" firstAttribute="centerY" secondItem="VAz-oX-JjE" secondAttribute="centerY" id="7OK-wc-LE4"/>
-                                        <constraint firstItem="SXl-CT-vMG" firstAttribute="leading" secondItem="G2g-Mt-2Q5" secondAttribute="trailing" constant="80" id="C1F-JW-H3t"/>
+                                        <constraint firstItem="SXl-CT-vMG" firstAttribute="leading" secondItem="G2g-Mt-2Q5" secondAttribute="trailing" constant="64" id="J8y-Ua-3z6"/>
                                         <constraint firstItem="57k-9m-M9t" firstAttribute="leading" secondItem="VAz-oX-JjE" secondAttribute="leading" constant="8" id="W6m-JI-0NR"/>
                                         <constraint firstItem="eWt-wU-s9e" firstAttribute="centerY" secondItem="VAz-oX-JjE" secondAttribute="centerY" id="ibO-NO-4x6"/>
-                                        <constraint firstAttribute="trailing" secondItem="SXl-CT-vMG" secondAttribute="trailing" constant="40" id="yCT-hw-2M8"/>
                                     </constraints>
                                 </view>
                                 <constraints>
@@ -1286,6 +1320,7 @@
                             <constraint firstItem="X0h-mG-Reg" firstAttribute="top" secondItem="7WQ-JM-FGp" secondAttribute="bottom" constant="4" id="oJx-VA-euV"/>
                             <constraint firstAttribute="trailing" secondItem="mKd-t6-1eR" secondAttribute="trailing" constant="12" id="olI-ye-9nb"/>
                             <constraint firstItem="7WQ-JM-FGp" firstAttribute="top" secondItem="mKd-t6-1eR" secondAttribute="bottom" id="pRk-bI-tLi"/>
+                            <constraint firstItem="G2g-Mt-2Q5" firstAttribute="leading" secondItem="tiY-qx-TaE" secondAttribute="leading" constant="80" id="uEe-Hn-0hv"/>
                             <constraint firstItem="X0h-mG-Reg" firstAttribute="leading" secondItem="45a-MU-rDD" secondAttribute="leading" id="vT3-fK-acp"/>
                             <constraint firstItem="bYw-ZI-39d" firstAttribute="top" secondItem="X0h-mG-Reg" secondAttribute="bottom" id="y1D-BL-fCA"/>
                             <constraint firstAttribute="trailing" secondItem="X0h-mG-Reg" secondAttribute="trailing" id="zuB-kC-eJK"/>
@@ -1296,6 +1331,7 @@
                         <outlet property="boxSave" destination="bYw-ZI-39d" id="CJM-xa-MW8"/>
                         <outlet property="boxUrl" destination="7WQ-JM-FGp" id="yFZ-uQ-Szr"/>
                         <outlet property="btnGoHTTP" destination="K9o-5O-4j1" id="w2T-BC-wPB"/>
+                        <outlet property="btnHump" destination="JcF-Mb-iUe" id="8nN-un-nOG"/>
                         <outlet property="btnMultipleFile" destination="WCI-To-u8d" id="H6V-rp-qX6"/>
                         <outlet property="btnPascal" destination="UtC-hZ-bxE" id="4oU-B7-e84"/>
                         <outlet property="btnPreSuffixRootModel" destination="kwI-ar-0KL" id="CdG-NR-SYa"/>
@@ -1303,6 +1339,7 @@
                         <outlet property="inputTextView" destination="KWI-cm-hiX" id="bRv-ZL-85q"/>
                         <outlet property="itemBtnPattern" destination="Edm-AN-99r" id="lBa-oE-y8r"/>
                         <outlet property="outPutTextView" destination="Z4q-yi-8f4" id="qr6-Ov-ePp"/>
+                        <outlet property="popBtnModel" destination="Wfw-lz-UaD" id="Xg3-Mv-Wka"/>
                         <outlet property="splitView" destination="X0h-mG-Reg" id="gTO-tX-cRe"/>
                         <outlet property="textFieldBaseChildName" destination="7HV-a7-qAM" id="FEY-1D-Iid"/>
                         <outlet property="textFieldBaseRootName" destination="WrO-Gs-tRd" id="fBX-Fw-Wvc"/>

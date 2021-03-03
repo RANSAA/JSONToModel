@@ -13,6 +13,15 @@
 @property(nonatomic, strong) NSMutableArray *aryModelNames;
 @property(nonatomic, strong) NSMutableArray *tmpAryH;//转存所有model @interface部分
 @property(nonatomic, strong) NSMutableArray *tmpAryM;//转存所有model @implementation部分
+
+
+@property (nonatomic, strong) NSMutableArray *aryJsonModelNames;//所有模型名称ary
+@property (nonatomic, strong) NSMutableArray *aryJsonPorpertys;//所有属性+类型ary; <NSSet *>
+
+@property(nonatomic, strong) NSMutableDictionary *allImportClassDic;//用于存储所有自定义解析Class
+@property(nonatomic, assign) NSInteger convertIndex;
+
+
 @end
 
 @implementation ConvertResult
@@ -30,10 +39,14 @@
 {
     if (self = [super init]) {
         _aryManualHandKey = @[].mutableCopy;
-        _aryCustomModelNames = @[].mutableCopy;
         _tmpAryM = @[].mutableCopy;
         _tmpAryH = @[].mutableCopy;
         _aryModelNames = @[].mutableCopy;
+
+        _aryJsonModelNames = @[].mutableCopy;
+        _aryJsonPorpertys = @[].mutableCopy;
+        
+        _allImportClassDic = @{}.mutableCopy;
     }
     return self;
 }
@@ -42,13 +55,32 @@
 - (void)resetEnv
 {
     [_aryManualHandKey removeAllObjects];
-    [_aryCustomModelNames removeAllObjects];
     [_tmpAryH removeAllObjects];
     [_tmpAryM removeAllObjects];
     [_aryModelNames removeAllObjects];
+    
+    [_aryJsonModelNames removeAllObjects];
+    [_aryJsonPorpertys removeAllObjects];
+    
+    [_allImportClassDic removeAllObjects];
 }
 
+/** 设置当前最外层是第几次循环解析 */
+- (void)setConvertIndex:(NSInteger)index
+{
+    _convertIndex = index;
+}
 
+- (NSMutableSet *)curImportClassAry
+{
+    NSString *key = [NSString stringWithFormat:@"%ld",_convertIndex];
+    NSMutableSet *ary = _allImportClassDic[key];
+    if (!ary) {
+        ary = [NSMutableSet setWithCapacity:0];
+        _allImportClassDic[key] = ary;
+    }
+    return ary;
+}
 
 /**  获取显示文字 */
 - (NSString *)getShowString
@@ -105,11 +137,14 @@
         for (NSInteger i=0; i<_tmpAryH.count; i++) {
             NSString *hString = _tmpAryH[i];
             NSString *mString = _tmpAryM[i];
-            NSString *h = [NSString stringWithFormat:@"%@.h",_aryModelNames[i]];
-            NSString *m = [NSString stringWithFormat:@"%@.m",_aryModelNames[i]];
-            [dict addEntriesFromDictionary:@{h:hString,
-                                             m:mString
-            }];
+            NSString *h = [NSString stringWithFormat:@"%@.%@",_aryModelNames[i],[ConvertCore.shared hPartSuffix]];
+            NSString *m = [NSString stringWithFormat:@"%@.%@",_aryModelNames[i],[ConvertCore.shared mPartSuffix]];
+            if (hString.length>10) {
+                [dict addEntriesFromDictionary:@{h:hString}];
+            }
+            if (mString.length>10) {
+                [dict addEntriesFromDictionary:@{m:mString}];
+            }
         }
     }else{
         if (_aryModelNames.count>0) {
@@ -121,11 +156,14 @@
             for (NSString *node in _tmpAryM) {
                 [mString appendFormat:@"%@\n",node];
             }
-            NSString *h = [NSString stringWithFormat:@"%@.h",_aryModelNames[0]];
-            NSString *m = [NSString stringWithFormat:@"%@.m",_aryModelNames[0]];
-            [dict addEntriesFromDictionary:@{h:hString,
-                                             m:mString
-            }];
+            NSString *h = [NSString stringWithFormat:@"%@.%@",_aryModelNames[0],[ConvertCore.shared hPartSuffix]];
+            NSString *m = [NSString stringWithFormat:@"%@.%@",_aryModelNames[0],[ConvertCore.shared mPartSuffix]];
+            if (hString.length>10) {
+                [dict addEntriesFromDictionary:@{h:hString}];
+            }
+            if (mString.length>10) {
+                [dict addEntriesFromDictionary:@{m:mString}];
+            }
         }
     }
     return dict;
@@ -165,4 +203,92 @@
 }
 
 
+
+
+
+
+
+
+#pragma mark 处理查询书否有相同的json字段并且具有相同属性结构
+
+/** 根据节点获取Set
+ 该节点数据为属性名+属性类型
+ */
+- (NSSet *)getNodeSetWithNodeDic:(NSDictionary *)nodeDic
+{
+    NSMutableArray *aryPorpertys = @[].mutableCopy;
+    NSArray *allKeys = [nodeDic.allKeys sortedArrayUsingSelector:@selector(compare:)];
+    for (NSString * key in allKeys) {
+        id value = nodeDic[key];
+        NSString *type = [ConvertCore attrTypeWithValue:value];
+        [aryPorpertys addObject:[NSString stringWithFormat:@"%@+%@",key,type]];
+    }
+    NSSet *nodeSet = [NSSet setWithArray:aryPorpertys];
+    return nodeSet;
+}
+
+
+/**
+ 添加对应的模型名称与原始dic
+ */
+- (void)addModelName:(NSString *)modelName rootDic:(NSDictionary *)rootDict
+{
+    [_aryJsonModelNames addObject:modelName];
+    NSSet *set = [self getNodeSetWithNodeDic:rootDict];
+    [_aryJsonPorpertys addObject:set];
+}
+
+/**
+ 根据json节点数据查询对应的modelName
+ */
+- (nullable NSString *)quearyModelNameWithNode:(NSDictionary *)nodeDic
+{
+    NSSet *quearySet = [self getNodeSetWithNodeDic:nodeDic];
+    BOOL isSet = NO;
+    NSInteger index = 0;
+    for (NSSet *node in _aryJsonPorpertys) {
+        if ([quearySet isSubsetOfSet:node]) {
+            isSet = YES;
+            break;
+        }
+        index++;
+    }
+    if (isSet) {
+        return _aryJsonModelNames[index];;
+    }
+    return nil;
+}
+
+
+
+/** 检查该json节点是否有，父亲json结构解析集合存在*/
+- (BOOL)isSubsetOfJsonNode:(NSDictionary *)nodeDic
+{
+    NSSet *quearySet = [self getNodeSetWithNodeDic:nodeDic];
+    BOOL isSet = NO;
+    for (NSSet *node in _aryJsonPorpertys) {
+        if ([quearySet isSubsetOfSet:node]) {
+            isSet = YES;
+            break;
+        }
+    }
+    return isSet;
+}
+
+/** 检查该json节点是否有，相同json结构解析集合存在*/
+- (BOOL)isMemberToJsonNode:(NSDictionary *)nodeDic
+{
+    NSSet *quearySet = [self getNodeSetWithNodeDic:nodeDic];
+    BOOL isSet = NO;
+    for (NSSet *node in _aryJsonPorpertys) {
+        if ([quearySet isEqualToSet:node]) {
+            isSet = YES;
+            break;
+        }
+    }
+    return isSet;
+}
+
 @end
+
+

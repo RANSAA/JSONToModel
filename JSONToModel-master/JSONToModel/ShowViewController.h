@@ -25,10 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 //配置
 @property (strong) IBOutlet NSPopUpButton *itemBtnPattern;//解析模式选择器
+@property (strong) IBOutlet NSPopUpButton *popBtnModel;//model解析重复模式
+
 @property (strong) IBOutlet NSButton *btnSerialize;//是否序列化
-@property (strong) IBOutlet NSButton *btnPascal;//帕斯卡命名
+@property (strong) IBOutlet NSButton *btnPascal;//Model帕斯卡命名
+@property (strong) IBOutlet NSButton *btnHump;//属性驼峰命名
 @property (strong) IBOutlet NSButton *btnPreSuffixRootModel;//RootModel是否添加前后缀
 @property (strong) IBOutlet NSButton *btnMultipleFile;//是否保存到多个文件
+@property (strong) IBOutlet NSButton *btnMinModel;//是否生成最小数量的model
 
 
 @property (strong) IBOutlet NSTextField *textFieldRootName;//根model名称

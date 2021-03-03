@@ -60,7 +60,7 @@
         if (index == 0) {
             [str appendFormat:@"@\"%@\":@\"%@\"",key,value];
         }else{
-            [str appendFormat:@",\n\t\t\t   @\"%@\":@\"%@\"",key,value];
+            [str appendFormat:@",\n\t\t\t @\"%@\":@\"%@\"",key,value];
         }
         index++;
     }
@@ -68,6 +68,26 @@
     return str;
 }
 
+
+//返回有序的allKeys
+- (NSArray *)allSortedKeys
+{
+    NSArray *allKeys = self.allKeys;
+    allKeys = [allKeys sortedArrayUsingSelector:@selector(compare:)];
+    return allKeys;
+}
+
+
+//返回有序的allValues,value排序是以allSortedKeys为标准
+- (NSArray *)allSortedValues
+{
+    NSArray *allKeys = [self allSortedKeys];
+    NSMutableArray *allValues = @[].mutableCopy;
+    for (id key in allKeys) {
+        [allValues addObject:self[key]];
+    }
+    return allValues;
+}
 
 
 @end

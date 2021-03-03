@@ -41,32 +41,42 @@
         _childModelTypeDic = @{}.mutableCopy;
         _childModelTypeAry = @{}.mutableCopy;
         _mappingPorpertys  = @{}.mutableCopy;
+        
+        _importClassSet = [[NSMutableSet alloc] init];
     }
     return self;
 }
 
 - (void)analysisRootDict
 {
-    NSArray *allKeys = [_rootDict allKeys];
-    if (Config.shared.isCompareKey) {
-        allKeys = [allKeys sortedArrayUsingSelector:@selector(compare:)];
+    if (![_rootDict isKindOfClass:NSDictionary.class]) {
+        NSLog(@"_rootDict class :%@     value:%@",[_rootDict class],_rootDict);
+        return;
     }
-    [_aryAttrName addObjectsFromArray:allKeys];
-    for (NSString * key in _aryAttrName) {
-        [_aryAttrValues addObject:_rootDict[key]];
-    }
+    
+    //获取有序的allKeys,allValues
+    [_aryAttrName addObjectsFromArray:[_rootDict allSortedKeys]];
+    [_aryAttrValues addObjectsFromArray:[_rootDict allSortedValues]];
+    
+    
+    //先检查是否hump命名
+    [self checkHumpPorpertyMapping];
     
     //关键字映射
     [self checkPorpertyMapping];
     
     
+    //json节点结构存储
+    [ConvertResult.shared addModelName:_modelName rootDic:_rootDict];
+    
+    
     //递归处理所有key，value
     for (NSInteger index=0; index<_aryAttrValues.count; index++) {
-        NSString *key = _aryAttrName[index];
+        NSString *porpertyName = _aryAttrName[index];
         id value = _aryAttrValues[index];
-        NSString *type = [self attrTypeWithValue:value];//属性类型获取
+        NSString *type = [ConvertCore attrTypeWithValue:value];//属性类型获取
         [_aryAttrType addObject:type];
-        [self codeChildModeWithKey:key value:value type:type index:index model:self];
+        [self codeChildModeWithPorpertyName:porpertyName value:value type:type index:index model:self];
     }
     
     
@@ -77,6 +87,22 @@
     
 //    NSLog(@"des:\n%@",self);
 }
+
+//是否对属性进行hump命名
+- (void)checkHumpPorpertyMapping
+{
+    if (Config.shared.isHump) {
+        for (NSInteger i =0; i<_aryAttrName.count; i++) {
+            NSString *originalKey = _aryAttrName[i];
+            NSString *humpName = [ConvertCore humpName:originalKey];
+            if (![originalKey isEqualToString:humpName]) {
+                _aryAttrName[i] = humpName;
+                [_mappingPorpertys addEntriesFromDictionary:@{humpName:originalKey}];
+            }
+         }
+    }
+}
+
 
 //检查关键字属性是否需要映射
 - (void)checkPorpertyMapping
@@ -92,7 +118,6 @@
 
 }
 
-
 /**
  处理child model
  key：对应属性名称
@@ -100,55 +125,82 @@
  type：属性对应的类型
  index：该属性位于所有属性的位置
  */
-- (void)codeChildModeWithKey:(NSString *)key value:(id)value type:(NSString *)type index:(NSInteger)index model:(ConvertModel *)node;
+- (void)codeChildModeWithPorpertyName:(NSString *)porpertyName value:(id)value type:(NSString *)type index:(NSInteger)index model:(ConvertModel *)node
 {
-    NSString *dicChildKey = [NSString stringWithFormat:@"%ld",index];
-    if ([type isEqualToString:@"NSArray"]) {
-        NSString *modelName = [self pascalName:key];
-        node.aryAttrType[index] = @"NSArray";
-        NSArray *ary = (NSArray *)value;
-        if (ary.count>0) {
-            id item = ary[0];
-            if ([item isKindOfClass:NSArray.class]) {//数组中的item依然是一个数组,这儿只能处理Array.Array中的item为同一种类型的数据结构
-//                    [node.childModelTypeAry setValue:modelName forKey:dicChildKey];
-//                    NSArray *itemAry = ary[0];
-//                    NSLog(@"NSArray tmp:%@",itemAry);
+    NSString *chlidDicKey = [NSString stringWithFormat:@"%ld",index];
+    if ([value isKindOfClass:NSDictionary.class]) {
+        BOOL isJsonModel = NO;
+        if (Config.shared.duplicateType == DuplicateModeStandard) {//标准
+            isJsonModel = [ConvertResult.shared isMemberToJsonNode:value];
+        }else if (Config.shared.duplicateType == DuplicateModeLeast){//最少
+            isJsonModel = [ConvertResult.shared isSubsetOfJsonNode:value];
+        }else{//全部
+            isJsonModel = NO;
+        }
+        NSString *modelName = [ConvertCore pascalName:porpertyName];
+        if (isJsonModel) {
+            modelName = [ConvertResult.shared quearyModelNameWithNode:value];
+        }else{
+            //添加前后缀
+            modelName = [NSString stringWithFormat:@"%@%@%@",Config.shared.prefixName,modelName,Config.shared.suffixName];
+            //创建新的节点，进行递归
+            ConvertModel *childDode = [ConvertModel new];
+            childDode.isRoot = NO;
+            childDode.modelName = modelName;
+            childDode.baseModelName = Config.shared.baseChildName;
+            childDode.rootDict = value;
+            [childDode analysisRootDict];
+        }
+        node.aryAttrType[index] = modelName;//修改对应属性类型
+        [self.importClassSet addObject:modelName];
+        [ConvertResult.shared.curImportClassAry addObject:modelName];
+        
+    }else if ([value isKindOfClass:NSArray.class]){
+        node.aryAttrType[index] = kAry;
+        NSArray *aryNode = (NSArray *)value;
+        if (aryNode.count > 0) {
+            id item = aryNode[0];
+            if ([item isKindOfClass:NSDictionary.class]) {
+                id maxDic = [self maxItemWithArray:value];
+                BOOL isJsonModel = NO;
+                if (Config.shared.duplicateType == DuplicateModeStandard) {//标准
+                    isJsonModel = [ConvertResult.shared isMemberToJsonNode:maxDic];
+                }else if (Config.shared.duplicateType == DuplicateModeLeast){//最少
+                    isJsonModel = [ConvertResult.shared isSubsetOfJsonNode:maxDic];
+                }else{//全部
+                    isJsonModel = NO;
+                }
                 
-                //目前这儿进行提示手动添加未转化成功的属性
-                NSLog(@"⚠️⚠️需要手动添加属性的字段:%@",key);
-                [ConvertResult.shared.aryManualHandKey addObject:key];
+                NSString *modelName = [ConvertCore pascalName:porpertyName];
+                if (isJsonModel) {
+                    modelName = [ConvertResult.shared quearyModelNameWithNode:maxDic];
+                }else{
+                    //添加前后缀
+                    modelName = [NSString stringWithFormat:@"%@%@%@",Config.shared.prefixName,modelName,Config.shared.suffixName];
+                    //创建新的节点，进行递归
+                    ConvertModel *childDode = [ConvertModel new];
+                    childDode.isRoot = NO;
+                    childDode.modelName = modelName;
+                    childDode.baseModelName = Config.shared.baseChildName;
+                    childDode.rootDict = maxDic;
+                    [childDode analysisRootDict];
+                }
                 
-            }else if ([item isKindOfClass:NSDictionary.class]){//数组的item是Dic
-                [node.childModelTypeAry setValue:modelName forKey:dicChildKey];
-                item = [self maxItemWithArray:ary];
+                [self.importClassSet addObject:modelName];
+                [ConvertResult.shared.curImportClassAry addObject:modelName];
+                [node.childModelTypeAry setValue:modelName forKey:chlidDicKey];                
+            }else{
                 
-                //添加前后缀
-                modelName = [NSString stringWithFormat:@"%@%@%@",Config.shared.prefixName,modelName,Config.shared.suffixName];
-                //创建新的节点，进行递归
-                ConvertModel *childDode = [ConvertModel new];
-                childDode.isRoot = NO;
-                childDode.modelName = modelName;
-                childDode.baseModelName = Config.shared.baseChildName;
-                childDode.rootDict = item;
-                [childDode analysisRootDict];
+                NSLog(@"⚠️⚠️需要手动添加属性的字段:%@",porpertyName);
+                [ConvertResult.shared.aryManualHandKey addObject:porpertyName];
+                
+                
             }
         }
-    }else if ([type isEqualToString:@"NSDictionary"]){
-        NSString *modelName = [self pascalName:key];
-        [node.childModelTypeDic setValue:modelName forKey:dicChildKey];
-        node.aryAttrType[index] = modelName;
-
-        //添加前后缀
-        modelName = [NSString stringWithFormat:@"%@%@%@",Config.shared.prefixName,modelName,Config.shared.suffixName];
-        //创建新的节点，进行递归
-        ConvertModel *childDode = [ConvertModel new];
-        childDode.isRoot = NO;
-        childDode.modelName = modelName;
-        childDode.baseModelName = Config.shared.baseChildName;
-        childDode.rootDict = value;
-        [childDode analysisRootDict];
+        
     }
 }
+
 
 /**
  获取数组中最大的item，数组的类型为NSDictionary
@@ -170,56 +222,6 @@
     return item;
 }
 
-//帕斯卡命名
-- (NSString *)pascalName:(NSString *)name
-{
-    name = [name stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSMutableString *tmpName = [[NSMutableString alloc] initWithString:name];
-    if (Config.shared.isPascal) {
-        // "_"处首字母大写
-        NSRange range = [tmpName rangeOfString:@"_"];
-        while (range.length>0) {
-            [tmpName replaceCharactersInRange:range withString:@""];
-            NSString *upperStr = [tmpName substringWithRange:range];
-            upperStr = upperStr.uppercaseString;
-            [tmpName replaceCharactersInRange:range withString:upperStr];
-            range = [tmpName rangeOfString:@"_"];
-        }
-        //首字母大写
-        range = NSMakeRange(0, 1);
-        NSString *upperStr = [tmpName substringWithRange:range];
-        upperStr = upperStr.uppercaseString;
-        [tmpName replaceCharactersInRange:range withString:upperStr];
-    }else{
-        NSRange range = NSMakeRange(0, 1);
-        NSString *upperStr = [tmpName substringWithRange:range];
-        upperStr = upperStr.uppercaseString;
-        [tmpName replaceCharactersInRange:range withString:upperStr];
-    }
-    return tmpName;
-}
-
-//根据value的值获取key的类型
-- (NSString *)attrTypeWithValue:(id)value
-{
-    NSString *type = @"NSString";
-    if ([value isKindOfClass:NSString.class]) {
-        type = @"NSString";
-    }else if ([value isKindOfClass:NSNumber.class]){
-        if ((strcmp([value objCType], @encode(float)) == 0) || (strcmp([value objCType], @encode(double)) == 0)){
-            type = @"CGFloat";
-        }else if (strcmp([value objCType], @encode(BOOL)) == 0){
-            type = @"BOOL";
-        }else{
-            type = @"NSInteger";
-        }
-    }else if ([value isKindOfClass:NSArray.class]){
-        type = @"NSArray";
-    }else if ([value isKindOfClass:NSDictionary.class]){
-        type = @"NSDictionary";
-    }
-    return type;
-}
 
 
 #pragma mark 合成interface部分,即 .h文件部分
@@ -265,6 +267,9 @@
 
 
 
+
+#pragma mark 额外的数据处理
+
 /**
  返回需要对自定义属性申明类型的字符串
  return @{@"key":Type.class};
@@ -297,5 +302,62 @@
     }
     return classStr;
 }
+
+#pragma mark 判断两个数组中的数据元素是否相同
+- (BOOL)isEqual:(NSArray *)aryA compare:(NSArray *)aryB
+{
+    BOOL equal = YES;
+    if (aryA.count == aryB.count) {
+        static NSMutableArray *tmpA = nil;
+        static NSMutableArray *tmpB = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            tmpA = @[].mutableCopy;
+            tmpB = @[].mutableCopy;
+        });
+        [tmpA addObjectsFromArray:aryA];
+        [tmpB addObjectsFromArray:aryB];
+        NSInteger index = 0;
+        for (NSString *a in tmpA) {
+            NSString *b = tmpB[index];
+            if (![a isEqualToString:b]) {
+                equal = NO;
+                break;
+            }
+            index++;
+        }
+        [tmpA removeAllObjects];
+        [tmpB removeAllObjects];
+    }else{
+        equal = NO;
+    }
+    return equal;
+}
+
+//数组转字符串
+- (NSString *)stringWithArray:(NSArray *)ary
+{
+    NSMutableString *mStr = [[NSMutableString alloc] init];
+    ary = [ary sortedArrayUsingSelector:@selector(compare:)];
+    for (NSString *str  in ary) {
+        [mStr appendString:str];
+    }
+    return mStr;
+}
+
+//字典所有key转字符串
+- (NSString *)stringWithDictAllKey:(NSDictionary *)dict
+{
+    NSMutableString *mStr = [[NSMutableString alloc] init];
+    NSArray *ary = dict.allKeys;
+    ary = [ary sortedArrayUsingSelector:@selector(compare:)];
+    for (NSString *str  in ary) {
+        [mStr appendString:str];
+    }
+    return mStr;
+}
+
+
+
 
 @end
