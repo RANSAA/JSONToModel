@@ -22,14 +22,17 @@ static NSTimeInterval   KAFRequestTimeout = 20.f;
     manager.requestSerializer.timeoutInterval = KAFRequestTimeout;
     
     //3.1配置请求序列化
-    AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
-    [serializer setRemovesKeysWithNullValues:YES];
-    manager.responseSerializer = serializer;
+//    AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
+//    [serializer setRemovesKeysWithNullValues:YES];
+//    manager.responseSerializer = serializer;
+    
+//    NSMutableSet *ContentTypes = [NSMutableSet setWithSet:manager.responseSerializer.acceptableContentTypes];
+//    [ContentTypes addObjectsFromArray:@[@"*/*"]];
+//    //3.2设置格式 (默认二进制, 这里不用改也OK)-配置响应序列化
+//    manager.responseSerializer.acceptableContentTypes=ContentTypes;
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 
-    NSMutableSet *ContentTypes = [NSMutableSet setWithSet:manager.responseSerializer.acceptableContentTypes];
-    [ContentTypes addObjectsFromArray:@[@"text/html"]];
-    //3.2设置格式 (默认二进制, 这里不用改也OK)-配置响应序列化
-    manager.responseSerializer.acceptableContentTypes=ContentTypes;
    
     return manager;
 }
@@ -70,20 +73,30 @@ static NSTimeInterval   KAFRequestTimeout = 20.f;
         for (NSString *key in [headers allKeys]) {
             [manager.requestSerializer setValue:headers[key] forHTTPHeaderField:key];
         }
+         NSLog(@"GET请求信息(%@=%@=%@)",path,params,headers);
+    }else{
+         NSLog(@"GET请求信息:%@",path);
     }
-    NSLog(@"GET请求信息(%@=%@=%@)",path,params,headers);
+   
    NSURLSessionDataTask *sessionTask = [manager GET:path parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlock){
             id dict = nil;
-            if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                dict = responseObject;
+            NSError *err = nil;
+            dict = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&err];
+            if (!err) {
+                if ([dict isKindOfClass:NSDictionary.class]) {
+                    NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+                    successBlock(response,dict,responseObject);
+                }else{
+                    NSLog(@"json格式不是预期的NSDictionary类型，而是NSArray!");
+                }
             }else{
-                dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];//把NSData转换成字典类型
+                if (faileBlock){
+                    faileBlock(err);
+                }
             }
-            NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-            successBlock(response,dict,responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (faileBlock){
