@@ -13,8 +13,6 @@
 		3F07FD5125E64E660011EAE3 /* OptionalSetting.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F07FD5025E64E660011EAE3 /* OptionalSetting.json */; };
 		3F07FD5425E6525F0011EAE3 /* SettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07FD5325E6525F0011EAE3 /* SettingManager.m */; };
 		3F07FD5725E65C420011EAE3 /* ConvertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F07FD5625E65C420011EAE3 /* ConvertModel.m */; };
-		3F273CBA26BBFF2C00E37160 /* cc.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F273CB926BBFF2C00E37160 /* cc.m */; };
-		3F273CBF26BC20DC00E37160 /* RootModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F273CBE26BC20DC00E37160 /* RootModel.m */; };
 		3F93652025E7EB9F002A8B21 /* ConvertModel+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F93651F25E7EB9F002A8B21 /* ConvertModel+MJExtension.m */; };
 		3FD86E4C25E7B8F8008D1A5C /* ConvertModel+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD86E4B25E7B8F8008D1A5C /* ConvertModel+YYModel.m */; };
 		3FDF6C7C25E391E400286896 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDF6C7B25E391E400286896 /* Config.m */; };
@@ -51,10 +49,6 @@
 		3F07FD5325E6525F0011EAE3 /* SettingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingManager.m; sourceTree = "<group>"; };
 		3F07FD5525E65C420011EAE3 /* ConvertModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertModel.h; sourceTree = "<group>"; };
 		3F07FD5625E65C420011EAE3 /* ConvertModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConvertModel.m; sourceTree = "<group>"; };
-		3F273CB826BBFF2C00E37160 /* cc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cc.h; sourceTree = "<group>"; };
-		3F273CB926BBFF2C00E37160 /* cc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cc.m; sourceTree = "<group>"; };
-		3F273CBD26BC20DC00E37160 /* RootModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootModel.h; sourceTree = "<group>"; };
-		3F273CBE26BC20DC00E37160 /* RootModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootModel.m; sourceTree = "<group>"; };
 		3F93651E25E7EB9F002A8B21 /* ConvertModel+MJExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ConvertModel+MJExtension.h"; sourceTree = "<group>"; };
 		3F93651F25E7EB9F002A8B21 /* ConvertModel+MJExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ConvertModel+MJExtension.m"; sourceTree = "<group>"; };
 		3FD86E4A25E7B8F8008D1A5C /* ConvertModel+YYModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ConvertModel+YYModel.h"; sourceTree = "<group>"; };
@@ -121,15 +115,6 @@
 				B46A606975904DD963C60EFE /* Pods_JSONToModel.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3F273CBC26BC20C400E37160 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				3F273CBD26BC20DC00E37160 /* RootModel.h */,
-				3F273CBE26BC20DC00E37160 /* RootModel.m */,
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		3FDF6C7825E3749500286896 /* Analysis */ = {
@@ -207,9 +192,6 @@
 				4E2CAF8920591F9C002B6E59 /* AppDelegate.m */,
 				3FDF6C7D25E3A0AD00286896 /* ShowViewController.h */,
 				3FDF6C7E25E3A0AD00286896 /* ShowViewController.m */,
-				3F273CB826BBFF2C00E37160 /* cc.h */,
-				3F273CB926BBFF2C00E37160 /* cc.m */,
-				3F273CBC26BC20C400E37160 /* New Group */,
 				3FDF9F1D25E2AB1400FFF3DE /* AttributeConfig.h */,
 				3FDF9F1E25E2AB1400FFF3DE /* AttributeConfig.m */,
 				4E2CAFA020591FC5002B6E59 /* HighlightingTextStorage.h */,
@@ -382,7 +364,6 @@
 				3F07FD5725E65C420011EAE3 /* ConvertModel.m in Sources */,
 				3F0637C125E4D0C10059697E /* ConvertJSONToModel.m in Sources */,
 				3FD86E4C25E7B8F8008D1A5C /* ConvertModel+YYModel.m in Sources */,
-				3F273CBF26BC20DC00E37160 /* RootModel.m in Sources */,
 				3F93652025E7EB9F002A8B21 /* ConvertModel+MJExtension.m in Sources */,
 				3FDF6C7F25E3A0AD00286896 /* ShowViewController.m in Sources */,
 				3F0637C425E4D9050059697E /* ConvertCore.m in Sources */,
@@ -394,7 +375,6 @@
 				4EC88E392059224600D75C15 /* AFNetClient.m in Sources */,
 				4E2CAF8A20591F9C002B6E59 /* AppDelegate.m in Sources */,
 				4E2CAFA120591FC6002B6E59 /* HighlightingTextStorage.m in Sources */,
-				3F273CBA26BBFF2C00E37160 /* cc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

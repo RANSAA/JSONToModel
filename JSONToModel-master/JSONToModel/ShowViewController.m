@@ -267,7 +267,23 @@
     self.textFieldVildTips.textColor   = JSONSerialize.shared.vildColor;
     self.textFieldVildTips.stringValue = JSONSerialize.shared.vildStr;
     self.inputTextView.string = JSONSerialize.shared.showStr;
+
+    if (!JSONSerialize.shared.isVildJson) {
+        self.outPutTextView.string = @"";
+    }
 }
+
+
+//粘贴action
+- (IBAction)btnPasteboardAction:(NSButton *)sender {
+    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+    if ([[pasteboard types] containsObject:NSPasteboardTypeString]) {
+        NSString *str = [pasteboard stringForType:NSPasteboardTypeString];
+
+        [self analysisFileWithString:str];
+    }
+}
+
 
 //清除输入框数据
 - (IBAction)btnClearAction:(NSButton *)sender {

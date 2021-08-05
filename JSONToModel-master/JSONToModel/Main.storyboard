@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -981,7 +981,7 @@
                                                         <rect key="frame" x="51" y="2" width="77" height="25"/>
                                                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="M1J-sd-FIE" id="e0m-a3-ObQ">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" id="4Hf-9c-Ipp">
                                                                 <items>
                                                                     <menuItem title="Item 1" state="on" id="M1J-sd-FIE"/>
@@ -1003,7 +1003,7 @@
                                                         <rect key="frame" x="185" y="2" width="77" height="25"/>
                                                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="xPd-FQ-vud" id="0sv-Xt-6vv">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="menu"/>
                                                             <menu key="menu" id="Cgy-Tc-aAN">
                                                                 <items>
                                                                     <menuItem title="Item 1" state="on" id="xPd-FQ-vud"/>
@@ -1254,7 +1254,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G2g-Mt-2Q5">
-                                            <rect key="frame" x="477" y="1" width="110" height="32"/>
+                                            <rect key="frame" x="767" y="1" width="110" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="98" id="aOk-SZ-mPy"/>
                                             </constraints>
@@ -1267,7 +1267,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SXl-CT-vMG">
-                                            <rect key="frame" x="639" y="1" width="110" height="32"/>
+                                            <rect key="frame" x="1128" y="1" width="110" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="98" id="Ygw-dn-Ts7"/>
                                             </constraints>
@@ -1280,7 +1280,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eWt-wU-s9e">
-                                            <rect key="frame" x="267" y="1" width="92" height="32"/>
+                                            <rect key="frame" x="307" y="1" width="92" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="CJS-S4-gTN"/>
                                             </constraints>
@@ -1292,13 +1292,28 @@
                                                 <action selector="btnClearAction:" target="L9N-4e-UF7" id="hh4-ho-iOm"/>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oyR-Wt-htn">
+                                            <rect key="frame" x="207" y="1" width="92" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="ZMN-la-kfa"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="push" title="粘贴" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bG1-FG-Hap">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="btnPasteboardAction:" target="L9N-4e-UF7" id="nHQ-RG-Ria"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="SXl-CT-vMG" firstAttribute="centerY" secondItem="VAz-oX-JjE" secondAttribute="centerY" id="2hC-GC-1ze"/>
+                                        <constraint firstItem="oyR-Wt-htn" firstAttribute="centerY" secondItem="eWt-wU-s9e" secondAttribute="centerY" id="72U-Vl-iOl"/>
                                         <constraint firstItem="G2g-Mt-2Q5" firstAttribute="centerY" secondItem="VAz-oX-JjE" secondAttribute="centerY" id="7OK-wc-LE4"/>
-                                        <constraint firstItem="SXl-CT-vMG" firstAttribute="leading" secondItem="G2g-Mt-2Q5" secondAttribute="trailing" constant="64" id="J8y-Ua-3z6"/>
                                         <constraint firstItem="57k-9m-M9t" firstAttribute="leading" secondItem="VAz-oX-JjE" secondAttribute="leading" constant="8" id="W6m-JI-0NR"/>
+                                        <constraint firstItem="eWt-wU-s9e" firstAttribute="leading" secondItem="oyR-Wt-htn" secondAttribute="trailing" constant="20" id="WYA-B1-eBV"/>
                                         <constraint firstItem="eWt-wU-s9e" firstAttribute="centerY" secondItem="VAz-oX-JjE" secondAttribute="centerY" id="ibO-NO-4x6"/>
+                                        <constraint firstAttribute="trailing" secondItem="SXl-CT-vMG" secondAttribute="trailing" constant="24" id="vXp-9b-Ung"/>
                                     </constraints>
                                 </view>
                                 <constraints>
@@ -1312,15 +1327,15 @@
                             <constraint firstAttribute="trailing" secondItem="7WQ-JM-FGp" secondAttribute="trailing" id="5Wp-VU-qGE"/>
                             <constraint firstItem="mKd-t6-1eR" firstAttribute="top" secondItem="45a-MU-rDD" secondAttribute="top" constant="4" id="7MQ-2g-ulp"/>
                             <constraint firstAttribute="bottom" secondItem="bYw-ZI-39d" secondAttribute="bottom" id="7jX-3g-wIn"/>
+                            <constraint firstItem="G2g-Mt-2Q5" firstAttribute="centerX" secondItem="Z4q-yi-8f4" secondAttribute="centerX" id="K9J-vy-Kdz"/>
                             <constraint firstAttribute="trailing" secondItem="bYw-ZI-39d" secondAttribute="trailing" id="VW6-cV-7Vo"/>
                             <constraint firstItem="mKd-t6-1eR" firstAttribute="leading" secondItem="45a-MU-rDD" secondAttribute="leading" constant="12" id="c7W-uw-tf9"/>
                             <constraint firstItem="7WQ-JM-FGp" firstAttribute="leading" secondItem="45a-MU-rDD" secondAttribute="leading" id="lZG-Va-Wyo"/>
                             <constraint firstItem="bYw-ZI-39d" firstAttribute="leading" secondItem="45a-MU-rDD" secondAttribute="leading" id="oCE-Hg-KkM"/>
-                            <constraint firstItem="eWt-wU-s9e" firstAttribute="trailing" secondItem="AXy-qt-7a5" secondAttribute="trailing" constant="-40" id="oI6-HI-hCy"/>
+                            <constraint firstItem="eWt-wU-s9e" firstAttribute="trailing" secondItem="AXy-qt-7a5" secondAttribute="trailing" id="oI6-HI-hCy"/>
                             <constraint firstItem="X0h-mG-Reg" firstAttribute="top" secondItem="7WQ-JM-FGp" secondAttribute="bottom" constant="4" id="oJx-VA-euV"/>
                             <constraint firstAttribute="trailing" secondItem="mKd-t6-1eR" secondAttribute="trailing" constant="12" id="olI-ye-9nb"/>
                             <constraint firstItem="7WQ-JM-FGp" firstAttribute="top" secondItem="mKd-t6-1eR" secondAttribute="bottom" id="pRk-bI-tLi"/>
-                            <constraint firstItem="G2g-Mt-2Q5" firstAttribute="leading" secondItem="tiY-qx-TaE" secondAttribute="leading" constant="80" id="uEe-Hn-0hv"/>
                             <constraint firstItem="X0h-mG-Reg" firstAttribute="leading" secondItem="45a-MU-rDD" secondAttribute="leading" id="vT3-fK-acp"/>
                             <constraint firstItem="bYw-ZI-39d" firstAttribute="top" secondItem="X0h-mG-Reg" secondAttribute="bottom" id="y1D-BL-fCA"/>
                             <constraint firstAttribute="trailing" secondItem="X0h-mG-Reg" secondAttribute="trailing" id="zuB-kC-eJK"/>
@@ -1352,7 +1367,7 @@
                 </viewController>
                 <customObject id="brg-vM-HsP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="290" y="99"/>
+            <point key="canvasLocation" x="202" y="117"/>
         </scene>
     </scenes>
 </document>
