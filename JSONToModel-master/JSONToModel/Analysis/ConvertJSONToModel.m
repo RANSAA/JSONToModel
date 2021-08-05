@@ -55,6 +55,10 @@
     node.modelName = rootName;
     node.baseModelName = Config.shared.baseRootName;
     [node analysisRootDict];
+
+
+    //向最后一个model的.h部分追加特定字符串
+    [ConvertResult.shared addSpecificStringToLastString];
     
     
     //处理转换结果

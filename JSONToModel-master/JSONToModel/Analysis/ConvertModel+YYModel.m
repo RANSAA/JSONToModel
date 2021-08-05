@@ -24,6 +24,11 @@
     [self yy_editArea];
     
     [self.hString appendFormat:@"\n@end \n\n"];
+
+    if (Config.shared.isMultipleFile) {
+        [self.hString appendString:@"NS_ASSUME_NONNULL_END \n\n\n"];
+    }
+
 }
 
 //属性编辑区域
@@ -45,16 +50,23 @@
     mark = [mark stringByReplacingOccurrencesOfString:@"ModelName" withString:markModelName];
     if (Config.shared.isMultipleFile) {
         [self.hString appendString:mark];
-        [self.hString appendString:@"#import <UIKit/UIKit.h>\n"];
+        [self.hString appendString:@"#import <Foundation/Foundation.h>\n"];
         for (NSString *h in self.importClassSet) {
             [self.hString appendFormat:@"#import \"%@.%@\"\n",h,[ConvertCore.shared hPartSuffix]];
         }
         [self.hString appendString:@"\n\n"];
+
+        //NS_ASSUME_NONNULL_BEGIN
+        [self.hString appendString:@"NS_ASSUME_NONNULL_BEGIN \n\n"];
+
     }else{
         if (self.isRoot) {
             [self.hString appendString:mark];
-            [self.hString appendString:@"#import <UIKit/UIKit.h>\n\n\n"];
-            
+            [self.hString appendString:@"#import <Foundation/Foundation.h>\n\n\n"];
+
+            //NS_ASSUME_NONNULL_BEGIN
+            [self.hString appendString:@"NS_ASSUME_NONNULL_BEGIN \n\n"];
+
             for (NSString *n in ConvertResult.shared.curImportClassAry) {
                 [self.hString appendFormat:@"@class %@;\n",n];
             }
@@ -109,6 +121,9 @@
     
     [self.mString appendFormat:@"@end \n\n"];
 }
+
+
+
 
 //.m文件头部自定义
 - (void)yy_customImplementString

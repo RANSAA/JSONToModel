@@ -77,10 +77,12 @@
         NSString *type = [ConvertCore attrTypeWithValue:value];//属性类型获取
         [_aryAttrType addObject:type];
         [self codeChildModeWithPorpertyName:porpertyName value:value type:type index:index model:self];
+
     }
     
     
     [self interface];
+
     
     [self implementation];
     
@@ -242,6 +244,7 @@
     }
     //暂存
     [ConvertResult.shared addHString:_hString name:_modelName];
+
 }
 
 #pragma mark 合成Implementation部分,即 .m文件部分

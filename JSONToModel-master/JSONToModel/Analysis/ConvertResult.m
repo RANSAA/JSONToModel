@@ -116,6 +116,23 @@
     [_aryModelNames insertObject:modelName atIndex:0];
 }
 
+
+
+/**
+ 向最后一个model的.h部分追加特定字符串
+ */
+- (void)addSpecificStringToLastString
+{
+    if (Config.shared.codeType ==  CodeTypeObjective) {
+        if (!Config.shared.isMultipleFile && _tmpAryH.count > 0) {
+            NSString *str = [_tmpAryH lastObject];
+            str = [NSString stringWithFormat:@"%@NS_ASSUME_NONNULL_END",str];
+            _tmpAryH[_tmpAryH.count-1] = str;
+        }
+    }
+}
+
+
 /**
  添加.m部分进行暂存
  mStr:

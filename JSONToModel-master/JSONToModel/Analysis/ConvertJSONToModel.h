@@ -14,9 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ConvertJSONToModel : NSObject
-
 @property (nonatomic, copy) BlockValue completed;//回调-更新输出
-
 
 + (instancetype)shared;
 

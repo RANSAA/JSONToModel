@@ -33,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addHString:(NSString *)hStr name:(NSString *)modelName;
 
 /**
+ 向最后一个model的.h部分追加特定字符串
+ */
+- (void)addSpecificStringToLastString;
+
+/**
  添加.m部分进行暂存,该部分是可选的
  mStr:
  */
@@ -48,7 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 保存文件*/
 - (void)saveAs;
-
 
 
 

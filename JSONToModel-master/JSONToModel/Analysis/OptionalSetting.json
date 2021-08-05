@@ -40,11 +40,11 @@
 ,
   "CustomPropertyMapper": {
     "OC-YYModel": [
-      "//返回一个 Dict，将 Model 属/Users/D/Remote/JSONToModel/JSONToModel-master/JSONToModel/Analysis/ConvertModel.m性名对映射到 JSON 的 Key。\n+ (NSDictionary *)modelCustomPropertyMapper {\n    return [dicString];\n}"
+      "//将Model属性名称映射到对应JSON的Key上。\n+ (NSDictionary *)modelCustomPropertyMapper {\n    return [dicString];\n}"
     ]
   ,
     "OC-MJExtension": [
-      "//返回一个 Dict，将 Model 属性名对映射到 JSON 的 Key。\n+ (NSDictionary *)mj_replacedKeyFromPropertyName\n{\n    return [dicString];\n}"
+      "//将Model属性名称映射到对应JSON的Key上。\n+ (NSDictionary *)mj_replacedKeyFromPropertyName\n{\n    return [dicString];\n}"
     ]
   }
 ,
