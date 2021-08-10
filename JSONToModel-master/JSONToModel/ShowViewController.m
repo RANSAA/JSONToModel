@@ -21,6 +21,9 @@
 #import "ConvertJSONToModel.h"
 #import "ConvertResult.h"
 
+#import "AboutViewController.h"
+
+
 
 
 
@@ -35,7 +38,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+
     [self setupUI];
     [self config];
 }
@@ -368,5 +372,38 @@
 - (IBAction)btnSaveToFileAction:(NSButton *)sender {
     [ConvertResult.shared saveAs];
 }
+
+
+//关于
+- (IBAction)btnAboutAction:(NSButton *)sender {
+    NSStoryboard *story = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    AboutViewController *vc = [story instantiateControllerWithIdentifier:@"AboutViewController"];
+//    [self presentViewControllerAsSheet:vc];
+    [self presentViewControllerAsModalWindow:vc];
+
+}
+
+
+//生成属性包装器
+- (IBAction)btnWarppedAction:(NSButton *)sender {
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    openPanel.allowsOtherFileTypes = false;
+    openPanel.treatsFilePackagesAsDirectories = false;
+    openPanel.canChooseFiles = false;
+    openPanel.canChooseDirectories = true;
+    openPanel.canCreateDirectories = true;
+    openPanel.prompt = @"Save As";
+
+    [openPanel beginSheetModalForWindow:NSApplication.sharedApplication.keyWindow completionHandler:^(NSModalResponse result) {
+        if (result == NSModalResponseOK) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"JSONWrapper" ofType:@""];
+            NSFileManager *manager = [NSFileManager defaultManager];
+            NSString *savePath = [openPanel.URL.path stringByAppendingPathComponent:@"JSONWrapper.swift"];
+            [manager copyItemAtPath:path toPath:savePath error:nil];
+        }
+    }];
+}
+
+
 
 @end

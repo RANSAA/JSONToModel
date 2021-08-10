@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ShowViewController.h"
 
 @interface AppDelegate ()
 
@@ -35,9 +36,7 @@
     NSSet *set = [NSSet setWithArray:@[@"1",@"2"]];
     NSSet *set1 = [NSSet setWithArray:@[@"1",@"2",@"3"]];
     NSLog(@"set is sub of:%d",[set isSubsetOfSet:set1]);
-    
-    [[NSString alloc] initWithString:nil];
-    
+
 }
 
 
