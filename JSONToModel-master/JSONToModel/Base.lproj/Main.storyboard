@@ -817,7 +817,7 @@
                                                     <rect key="frame" x="24" y="24" width="750" height="436"/>
                                                     <beginningViews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="v8W-ja-8Gt" userLabel="lab">
-                                                            <rect key="frame" x="-2" y="436" width="338" height="0.0"/>
+                                                            <rect key="frame" x="-2" y="420" width="338" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="RootModel名称：生成根model的名称，默认RootModel" id="TUq-4J-Q1Q">
                                                                 <font key="font" metaFont="system"/>
@@ -826,7 +826,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="nYQ-TP-KH3" userLabel="lab">
-                                                            <rect key="frame" x="-2" y="416" width="178" height="0.0"/>
+                                                            <rect key="frame" x="-2" y="384" width="178" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="添加前缀：为Model添加前缀" id="tid-uU-PG0">
                                                                 <font key="font" metaFont="system"/>
@@ -835,7 +835,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="fBk-V4-BHO" userLabel="lab">
-                                                            <rect key="frame" x="-2" y="396" width="178" height="0.0"/>
+                                                            <rect key="frame" x="-2" y="348" width="178" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="添加后缀：为Model添加后缀" id="E28-2U-3kO">
                                                                 <font key="font" metaFont="system"/>
@@ -844,7 +844,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="r3y-OY-iFC" userLabel="lab">
-                                                            <rect key="frame" x="-2" y="376" width="121" height="0.0"/>
+                                                            <rect key="frame" x="-2" y="312" width="121" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="根Model继承对象：" id="4uL-EM-9Zs">
                                                                 <font key="font" metaFont="system"/>
@@ -853,7 +853,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="aFK-Ie-6Pp" userLabel="lab">
-                                                            <rect key="frame" x="-2" y="356" width="121" height="0.0"/>
+                                                            <rect key="frame" x="-2" y="276" width="121" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="子Model继承对象：" id="S8d-2D-ONI">
                                                                 <font key="font" metaFont="system"/>
@@ -862,15 +862,15 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jKy-Fj-PAP" userLabel="模式">
-                                                            <rect key="frame" x="-2" y="323" width="272" height="13"/>
+                                                            <rect key="frame" x="-2" y="240" width="289" height="16"/>
                                                             <textFieldCell key="cell" selectable="YES" title="模式：Model解析模式，支持Objectice-C, Swift" id="w80-Jw-uU3">
-                                                                <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                                                <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="6oG-FG-X66" userLabel="lab">
-                                                            <rect key="frame" x="-2" y="287" width="374" height="16"/>
+                                                            <rect key="frame" x="-2" y="204" width="374" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" title="Model：解析数据时生成Model机制。包含：标准，最少，全部" allowsEditingTextAttributes="YES" id="p8j-KR-Y5Z">
                                                                 <font key="font" metaFont="system"/>
@@ -879,7 +879,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="NDh-OJ-pV6" userLabel="lab">
-                                                            <rect key="frame" x="-2" y="251" width="712" height="16"/>
+                                                            <rect key="frame" x="-2" y="168" width="712" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="              标准：如果解析某个节点时已经存在一个解析Model与当前节点完全相同时，那么该节点将不会生成新的model  " id="Eg4-Ut-MBL">
                                                                 <font key="font" metaFont="system"/>
@@ -888,7 +888,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="MeR-Fb-uw5" userLabel="lab">
-                                                            <rect key="frame" x="-2" y="215" width="698" height="16"/>
+                                                            <rect key="frame" x="-2" y="132" width="698" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="              最少：如果解析某个节点时已经存在一个解析Model是当前的父集合，那么当前节点将不会在生成新的model  " id="MT3-jj-dXu">
                                                                 <font key="font" metaFont="system"/>
@@ -897,7 +897,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="1SV-Hd-SZh" userLabel="lab">
-                                                            <rect key="frame" x="-2" y="179" width="464" height="16"/>
+                                                            <rect key="frame" x="-2" y="100" width="464" height="12"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="              全部：所有节点都会生成model，不管是否已经穿在完全相同的model" id="UHH-S8-R3K">
                                                                 <font key="font" metaFont="system"/>
@@ -906,7 +906,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="ysz-RR-prN">
-                                                            <rect key="frame" x="-2" y="143" width="231" height="16"/>
+                                                            <rect key="frame" x="-2" y="80" width="231" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="序列化：为model添加序列化支持代码" id="1du-Zr-tvO">
                                                                 <font key="font" metaFont="system"/>
@@ -915,7 +915,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="0dy-ff-Jlj">
-                                                            <rect key="frame" x="-2" y="108" width="270" height="15"/>
+                                                            <rect key="frame" x="-2" y="60" width="270" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="属性Hump命名：生成Model名称首字母大写" id="hJX-Fo-fmZ">
                                                                 <font key="font" metaFont="system"/>
@@ -924,7 +924,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="UEV-FM-1D4">
-                                                            <rect key="frame" x="-2" y="72" width="258" height="16"/>
+                                                            <rect key="frame" x="-2" y="40" width="258" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="RootModel添加前缀：为根Model添加前缀" id="nzT-TE-JWU">
                                                                 <font key="font" metaFont="system"/>
@@ -933,7 +933,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="D7t-LY-mJ1">
-                                                            <rect key="frame" x="-2" y="36" width="244" height="16"/>
+                                                            <rect key="frame" x="-2" y="20" width="244" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="多个源文件：是否将Model生成多个文件" id="llA-Gr-IeL">
                                                                 <font key="font" metaFont="system"/>
@@ -942,7 +942,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="OCX-Ng-CzU" userLabel="生成属性包装器">
-                                                            <rect key="frame" x="-2" y="0.0" width="433" height="16"/>
+                                                            <rect key="frame" x="-2" y="0.0" width="433" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" title="生成属性包装器：导出Swift属性包装器文件，让可选属性永远有一个值。" id="dEe-KV-X90">
                                                                 <font key="font" metaFont="system"/>

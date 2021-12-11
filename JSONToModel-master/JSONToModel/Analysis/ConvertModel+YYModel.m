@@ -93,15 +93,15 @@
     }else if ([type isEqualToString:kInt]) {
         str = [NSString stringWithFormat:@"@property (nonatomic, assign) NSInteger %@;\n",key];
     }else if ([type isEqualToString:kString]){
-        str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSString *%@;\n",key];
+        str = [NSString stringWithFormat:@"@property (nonatomic, copy  ) NSString *%@;\n",key];
     }else if ([type isEqualToString:kAry]){
         //判断容器内的模型，进行标记
         NSString *row = [NSString stringWithFormat:@"%ld",index];
         if ([self.childModelTypeAry.allKeys containsObject:row]) {
             NSString *modelName = self.childModelTypeAry[row];
-            str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@;//%@ \n",key,modelName];
+            str = [NSString stringWithFormat:@"@property (nonatomic, copy  ) NSArray *%@;//%@ \n",key,modelName];
         }else{
-            str = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@;\n",key];
+            str = [NSString stringWithFormat:@"@property (nonatomic, copy  ) NSArray *%@;\n",key];
         }
     }else{//NSDictionary to child Model
             str = [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *%@;\n",type,key];

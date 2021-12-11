@@ -8,6 +8,10 @@
 /**
  json to model 以YYModel为模板
  */
+
+/**
+ 这儿不应该使用扩展，应该直接继承ConvertModel
+ */
 #import "ConvertModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
